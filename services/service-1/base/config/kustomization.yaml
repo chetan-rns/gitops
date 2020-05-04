@@ -1,5 +1,0 @@
-bases:
-  - ../../../../envs/chetan-cicd-environment/pipelines/
-
-resources:
-  - secret.yaml

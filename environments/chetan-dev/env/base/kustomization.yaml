@@ -1,0 +1,3 @@
+resources:
+- chetan-dev-environment.yaml
+- chetan-dev-rolebinding.yaml
