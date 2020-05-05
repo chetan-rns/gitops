@@ -45,7 +45,7 @@ spec:
         resourceSpec:
           params:
           - name: url
-            value: :$(params.gitref)-$(params.gitsha)
+            value: quay.io/cbanavik/taxi:$(params.gitref)-$(params.gitsha)
           type: image
       serviceAccountName: pipeline
     status: {}
