@@ -1,3 +1,4 @@
+gitops_url: http://github.com/chetan-rns/gitops
 environments:
 - apps:
   - name: taxi
