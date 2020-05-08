@@ -4,6 +4,8 @@ resources:
 - 02-rolebindings/pipeline-service-role.yaml
 - 02-rolebindings/pipeline-service-rolebinding.yaml
 - 03-secrets/docker-config.yaml
+- 03-secrets/github-webhook-secret-go-server-svc.yaml
+- 03-secrets/github-webhook-secret-taxi-svc.yaml
 - 03-secrets/gitops-webhook-secret.yaml
 - 04-tasks/deploy-from-source-task.yaml
 - 04-tasks/deploy-using-kubectl-task.yaml
@@ -17,4 +19,3 @@ resources:
 - 07-templates/ci-dryrun-from-pr-template.yaml
 - 08-eventlisteners/cicd-event-listener.yaml
 - 09-routes/gitops-webhook-event-listener.yaml
-- 03-secrets/github-webhook-secret-taxi-svc.yaml
