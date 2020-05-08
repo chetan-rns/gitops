@@ -1,2 +1,3 @@
 resources:
 - chetan-stage-environment.yaml
+- chetan-stage-rolebinding.yaml

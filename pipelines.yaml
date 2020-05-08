@@ -15,7 +15,18 @@ environments:
       secret:
         name: github-webhook-secret-taxi-svc
         namespace: chetan-cicd
-- name: chetan-stage
+- apps:
+  - name: test-app
+    services:
+    - go-server
+  name: chetan-stage
+  services:
+  - name: go-server
+    source_url: https://github.com/chetan-rns/Go-Server
+    webhook:
+      secret:
+        name: github-webhook-secret-go-server-svc
+        namespace: chetan-cicd
 - cicd: true
   name: chetan-cicd
 - argo: true
