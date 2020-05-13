@@ -1,0 +1,72 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  creationTimestamp: null
+  name: deploy-from-source-task
+  namespace: chetan-cicd
+spec:
+  inputs:
+    params:
+    - default: "false"
+      description: If true run a server-side dryrun.
+      name: DRYRUN
+      type: string
+    resources:
+    - name: source
+      type: git
+  steps:
+  - script: |
+      for dir in `ls -d environments/*/`
+      do
+        path="${dir}env/overlays"
+        kubectl apply \
+        --dry-run=$(inputs.params.DRYRUN) \
+        -k $path
+      done
+    image: quay.io/redhat-developer/k8s-kubectl
+    name: run-kubectl
+    resources: {}
+    workingDir: /workspace/source
+
+---
+
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  creationTimestamp: null
+  name: script-test-pipeline
+  namespace: chetan-cicd
+spec:
+  resources:
+  - name: source-repo
+    type: git
+  tasks:
+  - name: apply-source
+    resources:
+      inputs:
+      - name: source
+        resource: source-repo
+    taskRef:
+      kind: Task
+      name: deploy-from-source-task
+
+---
+
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: script-test-pipelinerun
+  namespace: chetan-cicd
+spec:
+  pipelineRef:
+    name: script-test-pipeline
+  resources:
+  - name: source-repo
+    resourceSpec:
+      params:
+      - name: revision
+        value: master
+      - name: url
+        value: http://github.com/chetan-rns/gitops
+      type: git
+  serviceAccountName: pipeline

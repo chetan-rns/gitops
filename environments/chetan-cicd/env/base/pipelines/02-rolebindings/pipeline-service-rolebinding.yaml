@@ -11,3 +11,12 @@ subjects:
 - kind: ServiceAccount
   name: pipeline
   namespace: chetan-cicd
+- kind: ServiceAccount
+  name: pipeline
+  namespace: chetan-stage
+- kind: ServiceAccount
+  name: pipeline
+  namespace: chetan-dev
+- kind: ServiceAccount
+  name: pipeline
+  namespace: chetan-argocd

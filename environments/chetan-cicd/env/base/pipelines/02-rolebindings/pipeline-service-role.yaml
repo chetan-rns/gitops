@@ -25,6 +25,14 @@ rules:
   - get
   - patch
 - apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - rolebindings
+  verbs:
+  - get
+  - patch
+  - create
+- apiGroups:
   - bitnami.com
   resources:
   - sealedsecrets
@@ -32,3 +40,11 @@ rules:
   - get
   - patch
   - create
+- apiGroups:
+  - argoproj.io
+  resources:
+  - applications
+  verbs:
+  - get
+  - create
+  - patch 

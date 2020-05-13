@@ -6,7 +6,6 @@ environments:
   name: chetan-dev
   pipelines:
     integration:
-      binding: github-pr-binding
       template: app-ci-template
   services:
   - name: taxi-svc
