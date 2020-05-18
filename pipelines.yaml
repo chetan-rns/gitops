@@ -6,26 +6,22 @@ environments:
   name: chetan-dev
   pipelines:
     integration:
+      bindings:
+      - github-pr-binding
       template: app-ci-template
   services:
   - name: taxi-svc
+    pipelines:
+      integration:
+        bindings:
+        - chetan-dev-taxi-svc-binding
+        - github-pr-binding
     source_url: http://github.com/chetan-rns/taxi
     webhook:
       secret:
         name: github-webhook-secret-taxi-svc
         namespace: chetan-cicd
-- apps:
-  - name: test-app
-    services:
-    - go-server
-  name: chetan-stage
-  services:
-  - name: go-server
-    source_url: https://github.com/chetan-rns/Go-Server
-    webhook:
-      secret:
-        name: github-webhook-secret-go-server-svc
-        namespace: chetan-cicd
+- name: chetan-stage
 - cicd: true
   name: chetan-cicd
 - argo: true

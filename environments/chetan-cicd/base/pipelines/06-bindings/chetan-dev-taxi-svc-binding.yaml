@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  creationTimestamp: null
+  name: chetan-dev-taxi-svc-binding
+  namespace: chetan-cicd
+spec:
+  params:
+  - name: imageRepo
+    value: quay.io/cbanavik/taxi
+  - name: tlsVerify
+    value: "true"
+status: {}
