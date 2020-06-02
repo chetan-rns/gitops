@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: null
+  name: chetan-dev-taxi
+  namespace: argocd
+spec:
+  destination:
+    namespace: chetan-dev
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: environments/chetan-dev/apps/taxi/base
+    repoURL: https://github.com/chetan-rns/gitops
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+status:
+  health: {}
+  summary: {}
+  sync:
+    comparedTo:
+      destination: {}
+      source:
+        repoURL: ""
+    status: ""
