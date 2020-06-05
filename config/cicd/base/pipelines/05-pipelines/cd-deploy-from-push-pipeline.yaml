@@ -10,9 +10,6 @@ spec:
     type: git
   tasks:
   - name: apply-source
-    params:
-    - name: NAMESPACE
-      value: cicd
     resources:
       inputs:
       - name: source
