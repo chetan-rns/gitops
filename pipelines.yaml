@@ -1,14 +1,14 @@
 config:
-  ArgoCDConfig:
-    namespace: chetan-argocd
-  PipelineConfig:
-    namespace: chetan-cicd
+  argocd:
+    namespace: argocd
+  pipelines:
+    name: cicd
 environments:
 - apps:
   - name: taxi
     services:
     - taxi-svc
-  name: chetan-dev
+  name: dev
   pipelines:
     integration:
       bindings:
@@ -19,12 +19,12 @@ environments:
     pipelines:
       integration:
         bindings:
-        - chetan-dev-taxi-svc-binding
+        - dev-taxi-svc-binding
         - github-pr-binding
     source_url: https://github.com/chetan-rns/taxi
     webhook:
       secret:
-        name: github-webhook-secret-taxi-svc
-        namespace: chetan-cicd
-- name: chetan-stage
+        name: webhook-secret-dev-taxi-svc
+        namespace: cicd
+- name: stage
 gitops_url: https://github.com/chetan-rns/gitops

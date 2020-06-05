@@ -1,6 +1,0 @@
-resources:
-- chetan-dev-environment.yaml
-- chetan-dev-rolebinding.yaml
-
-bases:
-  - ../../apps/taxi
