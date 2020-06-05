@@ -4,6 +4,12 @@ config:
   pipelines:
     name: cicd
 environments:
+- name: demo
+  pipelines:
+    integration:
+      bindings:
+      - github-pr-binding
+      template: app-ci-template
 - apps:
   - name: taxi
     services:
