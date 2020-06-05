@@ -11,8 +11,6 @@ spec:
   tasks:
   - name: apply-source
     params:
-    - name: NAMESPACE
-      value: cicd
     - name: DRYRUN
       value: client
     resources:
