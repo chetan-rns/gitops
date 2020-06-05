@@ -10,6 +10,8 @@ rules:
   - namespaces
   verbs:
   - patch
+  - get
+  - create
 - apiGroups:
   - rbac.authorization.k8s.io
   resources:
@@ -32,3 +34,20 @@ rules:
   - get
   - patch
   - create
+- apiGroups:
+  - apps
+  resources:
+    - deployments
+    - services
+  verbs:
+    - get
+    - patch
+    - create
+- apiGroups:
+  - argoproj.io
+  resources:
+    - applications
+  verbs:
+    - get
+    - patch
+    - create
