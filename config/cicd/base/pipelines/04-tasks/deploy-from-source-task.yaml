@@ -6,7 +6,7 @@ metadata:
   namespace: cicd
 spec:
   params:
-  - default: none
+  - default: "false"
     description: If true run a server-side dryrun.
     name: DRYRUN
     type: string
