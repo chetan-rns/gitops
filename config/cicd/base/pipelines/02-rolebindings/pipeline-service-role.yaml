@@ -8,6 +8,7 @@ rules:
   - ""
   resources:
   - namespaces
+  - services
   verbs:
   - patch
   - get
@@ -38,7 +39,6 @@ rules:
   - apps
   resources:
     - deployments
-    - services
   verbs:
     - get
     - patch
