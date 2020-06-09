@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  creationTimestamp: null
+  name: deploy-from-source-task
+  namespace: cicd
+spec:
+  params:
+  - default: "false"
+    description: If true run a server-side dryrun.
+    name: DRYRUN
+    type: string
+  resources:
+    inputs:
+    - name: source
+      type: git
+  steps:
+  - image: quay.io/redhat-developer/k8s-kubectl
+    name: run-kubectl
+    resources: {}
+    script: "#!/bin/sh\nis_argocd=false\nargo_path=\"config/argocd\"\ncicd_path=\"config/cicd\"\ndryrun(){\n\tif
+      [ \"kubectl\" != \"\" ];then kubectl apply --dry-run=$(inputs.params.DRYRUN)
+      -k $1; fi\n}\nif [ -d ${argo_path} ]\nthen\n\tprintf \"Apply $(basename ${argo_path})
+      applications\\n\"\n\tdryrun \"${argo_path}/config\"\n\tis_argocd=true\nfi\nprintf
+      \"Apply $(basename ${cicd_path}) environment\\n\"\ndryrun \"${cicd_path}/overlays\"\nfor
+      dir in $(ls -d environments/*/)\ndo\n\tif ! $is_argocd\n\tthen\n\t\tprintf \"Apply
+      $(basename ${dir}) environment\\n\"\n\t\tdryrun \"${dir}env/overlays\"\n\telse\n\t\tif
+      [ -d \"${dir}apps\" ]\n\t\tthen\n\t\t\tfor app in $(ls -d ${dir}apps/*/)\n\t\t\tdo\n\t\t\t\tprintf
+      \"Apply $(basename ${app}) application\\n\"\n\t\t\t\tdryrun $app\n\t\t\tdone\n\t\telse\n\t\t\tprintf
+      \"Apply $(basename ${dir}) environment\\n\"\n\t\t\tdryrun \"${dir}env/overlays\"\n\t\tfi\n\tfi\ndone"
+    workingDir: /workspace/source
