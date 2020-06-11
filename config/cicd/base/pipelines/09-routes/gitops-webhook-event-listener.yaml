@@ -12,3 +12,4 @@ spec:
     name: el-cicd-event-listener
     weight: 100
   wildcardPolicy: None
+  

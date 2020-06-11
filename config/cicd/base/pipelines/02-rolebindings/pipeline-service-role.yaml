@@ -24,16 +24,11 @@ rules:
   - rbac.authorization.k8s.io
   resources:
   - clusterrolebindings
-  verbs:
-  - get
-  - patch
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
   - rolebindings
   verbs:
   - get
   - create
+  - patch
 - apiGroups:
   - bitnami.com
   resources:
