@@ -43,12 +43,28 @@ spec:
     - cel:
         filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
           'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
-          == 'chetan-rns/go-server'
+          == 'chetan-rns/Go-Server'
     - github:
         secretRef:
           namespace: cicd
           secretKey: webhook-secret-key
           secretName: webhook-secret-demo-go-svc
+    name: app-ci-build-from-pr-go-svc
+    template:
+      name: app-ci-template
+  - bindings:
+    - name: demo-2-go-svc-binding
+    - name: github-pr-binding
+    interceptors:
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
+          'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
+          == 'chetan-rns/Go-Server-2'
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: webhook-secret-demo-2-go-svc
     name: app-ci-build-from-pr-go-svc
     template:
       name: app-ci-template
