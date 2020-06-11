@@ -37,6 +37,22 @@ spec:
     template:
       name: cd-deploy-from-push-template
   - bindings:
+    - name: demo-go-svc-binding
+    - name: github-pr-binding
+    interceptors:
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
+          'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
+          == 'cbanavik/go-server'
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: webhook-secret-demo-go-svc
+    name: app-ci-build-from-pr-go-svc
+    template:
+      name: app-ci-template
+  - bindings:
     - name: dev-taxi-svc-binding
     - name: github-pr-binding
     interceptors:
