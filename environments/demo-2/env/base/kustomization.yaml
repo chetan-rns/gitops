@@ -1,0 +1,3 @@
+resources:
+- demo-2-environment.yaml
+- demo-2-rolebinding.yaml

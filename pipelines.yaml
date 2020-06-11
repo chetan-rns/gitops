@@ -27,6 +27,28 @@ environments:
         name: webhook-secret-demo-go-svc
         namespace: cicd
 - apps:
+  - name: app-1
+    services:
+    - go-svc
+  name: demo-2
+  pipelines:
+    integration:
+      bindings:
+      - github-pr-binding
+      template: app-ci-template
+  services:
+  - name: go-svc
+    pipelines:
+      integration:
+        bindings:
+        - demo-2-go-svc-binding
+        - github-pr-binding
+    source_url: https://github.com/chetan-rns/go-server-2.git
+    webhook:
+      secret:
+        name: webhook-secret-demo-2-go-svc
+        namespace: cicd
+- apps:
   - name: taxi
     services:
     - taxi-svc
