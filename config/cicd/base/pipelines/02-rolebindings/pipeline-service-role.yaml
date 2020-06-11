@@ -28,6 +28,7 @@ rules:
   verbs:
   - get
   - patch
+  - create
 - apiGroups:
   - bitnami.com
   resources:
