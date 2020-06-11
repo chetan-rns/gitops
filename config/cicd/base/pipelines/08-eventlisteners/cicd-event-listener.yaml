@@ -1,0 +1,57 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  creationTimestamp: null
+  name: cicd-event-listener
+  namespace: cicd
+spec:
+  serviceAccountName: pipeline
+  triggers:
+  - bindings:
+    - name: github-pr-binding
+    interceptors:
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
+          'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
+          == 'chetan-rns/gitops'
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: gitops-webhook-secret
+    name: ci-dryrun-from-pr
+    template:
+      name: ci-dryrun-from-pr-template
+  - bindings:
+    - name: github-push-binding
+    interceptors:
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+          == 'chetan-rns/gitops') && body.ref.startsWith('refs/heads/master')
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: gitops-webhook-secret
+    name: cd-deploy-from-push
+    template:
+      name: cd-deploy-from-push-template
+  - bindings:
+    - name: dev-taxi-svc-binding
+    - name: github-pr-binding
+    interceptors:
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
+          'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
+          == 'chetan-rns/taxi'
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: webhook-secret-dev-taxi-svc
+    name: app-ci-build-from-pr-taxi-svc
+    template:
+      name: app-ci-template
+status:
+  configuration:
+    generatedName: ""
