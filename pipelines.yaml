@@ -21,7 +21,7 @@ environments:
         bindings:
         - demo-go-svc-binding
         - github-pr-binding
-    source_url: https://github.com/chetan-rns/go-server.git
+    source_url: https://github.com/chetan-rns/Go-Server.git
     webhook:
       secret:
         name: webhook-secret-demo-go-svc
@@ -43,7 +43,7 @@ environments:
         bindings:
         - demo-2-go-svc-binding
         - github-pr-binding
-    source_url: https://github.com/chetan-rns/go-server-2.git
+    source_url: https://github.com/chetan-rns/Go-Server-2.git
     webhook:
       secret:
         name: webhook-secret-demo-2-go-svc

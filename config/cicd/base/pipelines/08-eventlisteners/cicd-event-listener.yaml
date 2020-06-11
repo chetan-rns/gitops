@@ -43,7 +43,7 @@ spec:
     - cel:
         filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
           'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
-          == 'chetan-rns/go-server'
+          == 'chetan-rns/Go-Server'
     - github:
         secretRef:
           namespace: cicd
@@ -59,7 +59,7 @@ spec:
     - cel:
         filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
           'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
-          == 'chetan-rns/go-server-2'
+          == 'chetan-rns/Go-Server-2'
     - github:
         secretRef:
           namespace: cicd
