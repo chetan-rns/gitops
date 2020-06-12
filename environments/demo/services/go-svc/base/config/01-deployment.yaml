@@ -16,7 +16,7 @@ spec:
         app: go-svc
     spec:
       containers:
-      - image: quay.io/cbanavik/taxi
+      - image: quay.io/cbanavik/taxi:latest
         name: go-svc
         ports:
         - containerPort: 80
