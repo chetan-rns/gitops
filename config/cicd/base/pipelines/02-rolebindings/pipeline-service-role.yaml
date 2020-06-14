@@ -53,3 +53,11 @@ rules:
   - get
   - create
   - patch
+- apiGroups:
+  - route.openshift.io
+  resources:
+  - routes
+  verbs:
+  - get
+  - create
+  - patch
