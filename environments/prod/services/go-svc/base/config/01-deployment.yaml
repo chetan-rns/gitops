@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: go-svc
-  namespace: demo
+  namespace: prod
   labels:
     app: go-svc
 spec:
