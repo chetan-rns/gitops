@@ -16,7 +16,7 @@ spec:
         app: go-svc
     spec:
       containers:
-      - image: quay.io/cbanavik/taxi:latest
+      - image: quay.io/cbanavik/taxi:chetan-rns-patch-4-5299e79b5aa7f4ff6b29ce34c2e666bbdcc97af2
         name: go-svc
         ports:
         - containerPort: 80
