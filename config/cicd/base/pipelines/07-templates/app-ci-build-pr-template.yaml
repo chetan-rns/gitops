@@ -43,7 +43,7 @@ spec:
         resourceSpec:
           params:
           - name: revision
-            value: $(params.gitref):$(params.gitref)-$(params.gitsha)
+            value: $(params.gitref)
           - name: url
             value: $(params.gitrepositoryurl)
           type: git
@@ -51,7 +51,7 @@ spec:
         resourceSpec:
           params:
           - name: url
-            value: $(params.imageRepo)
+            value: $(params.imageRepo):$(params.gitref)-$(params.gitsha)
           type: image
       serviceAccountName: pipeline
     status: {}
