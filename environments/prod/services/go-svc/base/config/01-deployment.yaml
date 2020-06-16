@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-svc
-  namespace: prod
   labels:
     app: go-svc
+  name: go-svc
+  namespace: prod
 spec:
   replicas: 2
   selector:
@@ -16,7 +16,7 @@ spec:
         app: go-svc
     spec:
       containers:
-      - name: go-svc
-        image: quay.io/cbanavik/taxi:chetan-rns-patch-1-08b8ad1923a8b4dafba8968adf4aba17083dd627
+      - image: quay.io/cbanavik/taxi:chetan-rns-patch-1-0ef4c917363c14195fbb2d1df368f1c0c5015441
+        name: go-svc
         ports:
         - containerPort: 80
