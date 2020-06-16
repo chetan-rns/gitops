@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-svc
+  namespace: prod
+  labels:
+    app: go-svc
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: go-svc
+  template:
+    metadata:
+      labels:
+        app: go-svc
+    spec:
+      containers:
+      - name: go-svc
+        image: quay.io/cbanavik/taxi
+        ports:
+        - containerPort: 80
