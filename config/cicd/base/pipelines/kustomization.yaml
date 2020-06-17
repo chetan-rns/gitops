@@ -6,6 +6,7 @@ resources:
 - 03-secrets/docker-config.yaml
 - 03-secrets/gitops-webhook-secret.yaml
 - 03-secrets/webhook-secret-dev-taxi-svc.yaml
+- 03-secrets/webhook-secret-prod-go-svc.yaml
 - 04-tasks/deploy-from-source-task.yaml
 - 04-tasks/deploy-using-kubectl-task.yaml
 - 05-pipelines/app-ci-pipeline.yaml
@@ -14,6 +15,7 @@ resources:
 - 06-bindings/dev-taxi-svc-binding.yaml
 - 06-bindings/github-pr-binding.yaml
 - 06-bindings/github-push-binding.yaml
+- 06-bindings/prod-go-svc-binding.yaml
 - 07-templates/app-ci-build-pr-template.yaml
 - 07-templates/cd-deploy-from-push-template.yaml
 - 07-templates/ci-dryrun-from-pr-template.yaml
