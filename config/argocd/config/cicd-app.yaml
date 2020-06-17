@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: config/argocd
+    path: config/argocd/config
     repoURL: https://github.com/chetan-rns/gitops
   syncPolicy:
     automated:
