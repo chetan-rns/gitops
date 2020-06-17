@@ -23,20 +23,6 @@ spec:
     template:
       name: ci-dryrun-from-pr-template
   - bindings:
-    - name: github-push-binding
-    interceptors:
-    - cel:
-        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/gitops') && body.ref.startsWith('refs/heads/master')
-    - github:
-        secretRef:
-          namespace: cicd
-          secretKey: webhook-secret-key
-          secretName: gitops-webhook-secret
-    name: cd-deploy-from-push
-    template:
-      name: cd-deploy-from-push-template
-  - bindings:
     - name: dev-taxi-svc-binding
     - name: github-pr-binding
     interceptors:
