@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   creationTimestamp: null
-  name: cicd-app
+  name: config-app
   namespace: argocd
 spec:
   destination:
@@ -10,13 +10,17 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: config/argocd/config
+    path: config
     repoURL: https://github.com/chetan-rns/gitops
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
   ignoreDifferences:
+  - group: argoproj.io
+    kind: Application
+    jsonPointers:
+    - /status
   - group: triggers.tekton.dev
     kind: EventListener
     jsonPointers:
