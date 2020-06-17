@@ -10,12 +10,25 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: config/cicd/overlays
+    path: config
     repoURL: https://github.com/chetan-rns/gitops
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+  ignoreDifferences:
+  - group: triggers.tekton.dev
+    kind: EventListener
+    jsonPointers:
+    - /status
+  - group: triggers.tekton.dev
+    kind: TriggerTemplate
+    jsonPointers:
+    - /status
+  - group: triggers.tekton.dev
+    kind: TriggerBinding
+    jsonPointers:
+    - /status
 status:
   health: {}
   summary: {}
