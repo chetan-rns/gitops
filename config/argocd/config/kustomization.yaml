@@ -1,4 +1,4 @@
 resources:
 - dev-taxi-app.yaml
-- cicd-app.yaml
+- config-app.yaml
 - prod-app-1-app.yaml
