@@ -51,7 +51,7 @@ spec:
         resourceSpec:
           params:
           - name: url
-            value: $(params.imageRepo):$(params.gitref)-$(params.gitsha)
+            value: $(params.imageRepo)
           type: image
       serviceAccountName: pipeline
     status: {}

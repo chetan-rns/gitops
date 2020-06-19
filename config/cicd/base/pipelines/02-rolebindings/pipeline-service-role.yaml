@@ -17,9 +17,12 @@ rules:
   - rbac.authorization.k8s.io
   resources:
   - clusterroles
+  - roles
   verbs:
+  - get
   - bind
   - patch
+  - create
 - apiGroups:
   - rbac.authorization.k8s.io
   resources:
@@ -49,14 +52,6 @@ rules:
   - argoproj.io
   resources:
   - applications
-  verbs:
-  - get
-  - create
-  - patch
-- apiGroups:
-  - route.openshift.io
-  resources:
-  - routes
   verbs:
   - get
   - create
