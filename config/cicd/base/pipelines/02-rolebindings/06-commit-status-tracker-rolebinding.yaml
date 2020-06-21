@@ -11,4 +11,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: commit-status-tracker
+  namespace: cicd 
+- kind: ServiceAccount
+  name: pipeline
   namespace: cicd
