@@ -1,11 +1,11 @@
 resources:
 - 01-namespaces/cicd-environment.yaml
-- 02-rolebindings/01-pipeline-service-account.yaml
-- 02-rolebindings/02-pipeline-service-role.yaml
-- 02-rolebindings/03-pipeline-service-rolebinding.yaml
-- 02-rolebindings/04-commit-status-tracker-service-role.yaml
-- 02-rolebindings/05-commit-status-tracker-role.yaml
-- 02-rolebindings/06-commit-status-tracker-rolebinding.yaml
+- 02-rolebindings/commit-status-tracker-role.yaml
+- 02-rolebindings/commit-status-tracker-rolebinding.yaml
+- 02-rolebindings/commit-status-tracker-service-role.yaml
+- 02-rolebindings/pipeline-service-account.yaml
+- 02-rolebindings/pipeline-service-role.yaml
+- 02-rolebindings/pipeline-service-rolebinding.yaml
 - 03-secrets/commit-status-tracker.yaml
 - 03-secrets/docker-config.yaml
 - 03-secrets/gitops-webhook-secret.yaml

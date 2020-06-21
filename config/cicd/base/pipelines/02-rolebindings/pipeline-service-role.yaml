@@ -17,7 +17,7 @@ rules:
   - rbac.authorization.k8s.io
   resources:
   - clusterroles
-  - roles
+  - role
   verbs:
   - get
   - bind
