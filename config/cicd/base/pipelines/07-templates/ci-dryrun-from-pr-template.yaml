@@ -8,7 +8,7 @@ spec:
   params:
   - default: master
     description: The git revision
-    name: gitref
+    name: gitsha
   - description: The git repository url
     name: gitrepositoryurl
   resourcetemplates:
@@ -29,7 +29,7 @@ spec:
         resourceSpec:
           params:
           - name: revision
-            value: $(params.gitref)
+            value: $(params.gitsha)
           - name: url
             value: $(params.gitrepositoryurl)
           type: git

@@ -43,7 +43,7 @@ spec:
         resourceSpec:
           params:
           - name: revision
-            value: $(params.gitref)
+            value: $(params.gitsha)
           - name: url
             value: $(params.gitrepositoryurl)
           type: git
