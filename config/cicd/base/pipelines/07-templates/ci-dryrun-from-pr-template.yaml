@@ -8,9 +8,11 @@ spec:
   params:
   - default: master
     description: The git revision
-    name: gitsha
+    name: gitref
   - description: The git repository url
     name: gitrepositoryurl
+  - description: The specific commit SHA.
+    name: gitsha
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun

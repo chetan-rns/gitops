@@ -24,8 +24,8 @@ spec:
     metadata:
       annotations:
         tekton.dev/git-status: "true"
-        tekton.dev/status-context: ci-dryrun-from-pr-pipeline
-        tekton.dev/status-description: Stage CI Dry Run
+        tekton.dev/status-context: dev-ci-build-from-pr
+        tekton.dev/status-description: Dev CI Build
       creationTimestamp: null
       name: app-ci-pipeline-run-$(uid)
     spec:
