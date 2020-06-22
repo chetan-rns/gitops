@@ -1,10 +1,6 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-  annotations:
-    tekton.dev/git-status: "true"
-    tekton.dev/status-context: ci-dryrun-from-pr-pipeline
-    tekton.dev/status-description: Stage CI Dry Run
   creationTimestamp: null
   name: ci-dryrun-from-pr-template
   namespace: cicd
@@ -19,6 +15,10 @@ spec:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
+      annotations:
+        tekton.dev/git-status: "true"
+        tekton.dev/status-context: ci-dryrun-from-pr-pipeline
+        tekton.dev/status-description: Stage CI Dry Run
       creationTimestamp: null
       name: ci-dryrun-from-pr-pipeline-$(uid)
     spec:
