@@ -30,7 +30,7 @@ spec:
               fieldPath: metadata.name
         - name: OPERATOR_NAME
           value: commit-status-tracker
-        image: quay.io/redhat-developer/commit-status-tracker:v0.0.2
+        image: quay.io/cbanavik/test-operator
         imagePullPolicy: Always
         name: commit-status-tracker
         resources: {}
