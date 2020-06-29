@@ -13,6 +13,7 @@ environments:
     integration:
       bindings:
       - github-pr-binding
+      - github-push-binding
       template: app-ci-template
   services:
   - name: taxi-svc
@@ -21,10 +22,11 @@ environments:
         bindings:
         - dev-taxi-svc-binding
         - github-pr-binding
-    source_url: https://github.com/chetan-rns/taxi
+        - github-push-binding
+    source_url: https://github.com/chetan-rns/taxi.git
     webhook:
       secret:
         name: webhook-secret-dev-taxi-svc
         namespace: cicd
 - name: stage
-gitops_url: https://github.com/chetan-rns/gitops
+gitops_url: https://github.com/chetan-rns/gitops.git

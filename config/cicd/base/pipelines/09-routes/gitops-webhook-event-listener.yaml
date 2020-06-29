@@ -5,6 +5,7 @@ metadata:
   name: gitops-webhook-event-listener-route
   namespace: cicd
 spec:
+  host: ""
   port:
     targetPort: 8080
   to:

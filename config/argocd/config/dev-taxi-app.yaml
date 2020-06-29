@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     path: environments/dev/apps/taxi/base
-    repoURL: https://github.com/chetan-rns/gitops
+    repoURL: https://github.com/chetan-rns/gitops.git
   syncPolicy:
     automated:
       prune: true

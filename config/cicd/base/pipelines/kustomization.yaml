@@ -15,6 +15,7 @@ resources:
 - 06-bindings/github-pr-binding.yaml
 - 06-bindings/github-push-binding.yaml
 - 07-templates/app-ci-build-pr-template.yaml
+- 07-templates/app-push-template.yaml
 - 07-templates/cd-deploy-from-push-template.yaml
 - 07-templates/ci-dryrun-from-pr-template.yaml
 - 08-eventlisteners/cicd-event-listener.yaml

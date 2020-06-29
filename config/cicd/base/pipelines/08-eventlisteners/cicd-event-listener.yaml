@@ -5,6 +5,7 @@ metadata:
   name: cicd-event-listener
   namespace: cicd
 spec:
+  podTemplate: {}
   serviceAccountName: pipeline
   triggers:
   - bindings:
@@ -39,6 +40,7 @@ spec:
   - bindings:
     - name: dev-taxi-svc-binding
     - name: github-pr-binding
+    - name: github-push-binding
     interceptors:
     - cel:
         filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
@@ -50,6 +52,22 @@ spec:
           secretKey: webhook-secret-key
           secretName: webhook-secret-dev-taxi-svc
     name: app-ci-build-from-pr-taxi-svc
+    template:
+      name: app-ci-template
+  - bindings:
+    - name: dev-taxi-svc-binding
+    - name: github-pr-binding
+    - name: github-push-binding
+    interceptors:
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+          == 'chetan-rns/taxi') && body.ref.startsWith('refs/heads/master')
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: webhook-secret-dev-taxi-svc
+    name: app-push-taxi-svc
     template:
       name: app-ci-template
 status:
