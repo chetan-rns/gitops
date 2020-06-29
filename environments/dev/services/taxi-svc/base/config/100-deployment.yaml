@@ -9,12 +9,14 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: taxi-svc
+      app.kubernetes.io/part-of: taxi
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
         app.kubernetes.io/name: taxi-svc
+        app.kubernetes.io/part-of: taxi
     spec:
       containers:
       - image: nginxinc/nginx-unprivileged:latest

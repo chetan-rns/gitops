@@ -17,12 +17,9 @@ rules:
   - rbac.authorization.k8s.io
   resources:
   - clusterroles
-  - roles
   verbs:
-  - get
   - bind
   - patch
-  - create
 - apiGroups:
   - rbac.authorization.k8s.io
   resources:
