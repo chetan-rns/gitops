@@ -9,9 +9,6 @@ environments:
     services:
     - taxi-svc
   name: dev
-  pipelines:
-    integration:
-      template: app-ci-template
   services:
   - name: taxi-svc
     pipelines:

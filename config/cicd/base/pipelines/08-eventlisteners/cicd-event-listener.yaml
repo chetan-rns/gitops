@@ -66,7 +66,7 @@ spec:
           secretName: webhook-secret-dev-taxi-svc
     name: app-push-taxi-svc
     template:
-      name: app-ci-template
+      name: app-push-template
 status:
   configuration:
     generatedName: ""
