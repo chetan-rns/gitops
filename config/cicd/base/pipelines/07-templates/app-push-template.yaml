@@ -25,6 +25,13 @@ spec:
       creationTimestamp: null
       name: app-ci-pipeline-run-$(uid)
     spec:
+      params:
+      - name: REPO
+        value: $(params.fullname)
+      - name: COMMIT_SHA
+        value: $(params.gitsha)
+      - name: TLSVERIFY
+        value: $(params.tlsVerify)
       pipelineRef:
         name: app-ci-pipeline
       resources:
