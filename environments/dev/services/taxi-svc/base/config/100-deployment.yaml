@@ -19,7 +19,7 @@ spec:
         app.kubernetes.io/part-of: taxi
     spec:
       containers:
-      - image: nginxinc/nginx-unprivileged:latest
+      - image: quay.io/cbanavik/taxi:1d184572d6cb7b39462c4fac6a4ace1a695cf2e1
         imagePullPolicy: Always
         name: taxi-svc
         ports:
