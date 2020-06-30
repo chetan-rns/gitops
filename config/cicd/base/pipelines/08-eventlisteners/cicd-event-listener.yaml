@@ -37,8 +37,8 @@ spec:
     template:
       name: cd-deploy-from-push-template
   - bindings:
-    - name: github-pr-binding
     - name: dev-taxi-svc-binding
+    - name: github-pr-binding
     interceptors:
     - cel:
         filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
@@ -53,8 +53,8 @@ spec:
     template:
       name: app-ci-template
   - bindings:
-    - name: github-push-binding
     - name: dev-taxi-svc-binding
+    - name: github-push-binding
     interceptors:
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name

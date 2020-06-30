@@ -1,6 +1,10 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
+  annotations:
+    tekton.dev/git-status: "true"
+    tekton.dev/status-context: application-pipeline
+    tekton.dev/status-description: Application Push Build
   creationTimestamp: null
   name: app-push-template
   namespace: cicd
@@ -33,7 +37,7 @@ spec:
       - name: TLSVERIFY
         value: $(params.tlsVerify)
       pipelineRef:
-        name: app-ci-pipeline
+        name: application-pipeline
       resources:
       - name: source-repo
         resourceSpec:

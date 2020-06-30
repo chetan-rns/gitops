@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   creationTimestamp: null
-  name: app-ci-pipeline
+  name: application-pipeline
   namespace: cicd
 spec:
   params:
