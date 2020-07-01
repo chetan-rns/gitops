@@ -3,8 +3,8 @@ kind: TriggerTemplate
 metadata:
   annotations:
     tekton.dev/git-status: "true"
-    tekton.dev/status-context: application-pipeline
-    tekton.dev/status-description: Application CI Build
+    tekton.dev/status-context: dev-ci-build-from-pr
+    tekton.dev/status-description: Dev CI Build
   creationTimestamp: null
   name: app-ci-template
   namespace: cicd
@@ -37,7 +37,7 @@ spec:
       - name: TLSVERIFY
         value: $(params.tlsVerify)
       pipelineRef:
-        name: application-pipeline
+        name: app-ci-pipeline
       resources:
       - name: source-repo
         resourceSpec:

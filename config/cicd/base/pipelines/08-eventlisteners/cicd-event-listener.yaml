@@ -52,21 +52,6 @@ spec:
     name: app-ci-build-from-pr-taxi-svc
     template:
       name: app-ci-template
-  - bindings:
-    - name: dev-taxi-svc-binding
-    - name: github-push-binding
-    interceptors:
-    - cel:
-        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/taxi') && body.ref.startsWith('refs/heads/master')
-    - github:
-        secretRef:
-          namespace: cicd
-          secretKey: webhook-secret-key
-          secretName: webhook-secret-dev-taxi-svc
-    name: app-push-taxi-svc
-    template:
-      name: app-push-template
 status:
   configuration:
     generatedName: ""
