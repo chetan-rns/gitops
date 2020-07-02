@@ -11,8 +11,8 @@ spec:
     - name: github-binding
     interceptors:
     - cel:
-        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/gitops') && !body.ref.endsWith(body.repository.default_branch)
+        filter: header.match('X-GitHub-Event', 'push') && body.repository.full_name
+          == 'chetan-rns/gitops' && !body.ref.endsWith(body.repository.default_branch)
         overlays:
           - key: extensions.branch
             expression: body.ref.split('/')[2]
