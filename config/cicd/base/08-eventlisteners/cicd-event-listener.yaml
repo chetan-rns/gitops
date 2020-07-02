@@ -12,10 +12,10 @@ spec:
     interceptors:
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/gitops') && !body.ref.startsWith(body.repository.default_branch)
+          == 'chetan-rns/gitops') && !body.ref.endsWith(body.repository.default_branch)
         overlays:
           - key: ref
-            expression: "body.ref.split('/')[2]"
+            expression: body.ref.split('/')[2]
     - github:
         secretRef:
           namespace: cicd
@@ -29,10 +29,10 @@ spec:
     interceptors:
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/gitops') && body.ref.startsWith(body.repository.default_branch)
+          == 'chetan-rns/gitops') && body.ref.endsWith(body.repository.default_branch)
         overlays:
           - key: ref
-            expression: "body.ref.split('/')[2]"
+            expression: body.ref.split('/')[2]
     - github:
         secretRef:
           namespace: cicd
@@ -50,7 +50,7 @@ spec:
           == 'chetan-rns/gitops')
         overlays:
           - key: ref
-            expression: "body.ref.split('/')[2]"
+            expression: body.ref.split('/')[2]
     - github:
         secretRef:
           namespace: cicd
