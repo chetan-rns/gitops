@@ -13,8 +13,8 @@ spec:
     - cel:
         filter: header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/gitops' && !body.ref.endsWith(body.repository.default_branch)
         overlays:
-          - key: extensions.branch
-            expression: "split(body.ref,'/')[2]"
+        - key: extensions.branch
+          expression: "split(body.ref,'/')[2]"
     - github:
         secretRef:
           namespace: cicd
@@ -30,8 +30,8 @@ spec:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/gitops') && body.ref.endsWith(body.repository.default_branch)
         overlays:
-          - key: extensions.branch
-            expression: "split(body.ref,'/')[2]"
+        - key: extensions.branch
+          expression: "split(body.ref,'/')[2]"
     - github:
         secretRef:
           namespace: cicd
@@ -48,8 +48,8 @@ spec:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/taxi')
         overlays:
-          - key: extensions.branch
-            expression: "split(body.ref,'/')[2]"
+        - key: extensions.branch
+          expression: "split(body.ref,'/')[2]"
     - github:
         secretRef:
           namespace: cicd
