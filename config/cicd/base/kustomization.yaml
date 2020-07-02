@@ -12,7 +12,6 @@ resources:
 - 05-pipelines/cd-deploy-from-push-pipeline.yaml
 - 05-pipelines/ci-dryrun-from-pr-pipeline.yaml
 - 06-bindings/dev-taxi-binding.yaml
-- 06-bindings/github-pr-binding.yaml
 - 06-bindings/github-push-binding.yaml
 - 07-templates/app-ci-build-pr-template.yaml
 - 07-templates/cd-deploy-from-push-template.yaml
