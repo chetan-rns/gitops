@@ -2,7 +2,7 @@ apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
   creationTimestamp: null
-  name: dev-taxi-svc-binding
+  name: dev-taxi-binding
   namespace: cicd
 spec:
   params:

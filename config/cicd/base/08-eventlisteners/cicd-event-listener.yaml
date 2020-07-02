@@ -37,7 +37,7 @@ spec:
     template:
       name: cd-deploy-from-push-template
   - bindings:
-    - name: dev-taxi-svc-binding
+    - name: dev-taxi-binding
     - name: github-pr-binding
     interceptors:
     - cel:
@@ -48,8 +48,8 @@ spec:
         secretRef:
           namespace: cicd
           secretKey: webhook-secret-key
-          secretName: webhook-secret-dev-taxi-svc
-    name: app-ci-build-from-pr-taxi-svc
+          secretName: webhook-secret-dev-taxi
+    name: app-ci-build-from-pr-taxi
     template:
       name: app-ci-template
 status:
