@@ -15,7 +15,7 @@ spec:
           == 'chetan-rns/gitops' && !body.ref.endsWith(body.repository.default_branch)
         overlays:
           - key: extensions.branch
-            expression: body.ref.split('/')[2]
+            expression: "body.ref.split('/')[2]"
     - github:
         secretRef:
           namespace: cicd
@@ -32,7 +32,7 @@ spec:
           == 'chetan-rns/gitops') && body.ref.endsWith(body.repository.default_branch)
         overlays:
           - key: extensions.branch
-            expression: body.ref.split('/')[2]
+            expression: "body.ref.split('/')[2]"
     - github:
         secretRef:
           namespace: cicd
@@ -50,7 +50,7 @@ spec:
           == 'chetan-rns/taxi')
         overlays:
           - key: extensions.branch
-            expression: body.ref.split('/')[2]
+            expression: "body.ref.split('/')[2]"
     - github:
         secretRef:
           namespace: cicd
