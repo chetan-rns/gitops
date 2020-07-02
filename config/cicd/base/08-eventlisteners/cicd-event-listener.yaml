@@ -14,7 +14,7 @@ spec:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/gitops') && !body.ref.endsWith(body.repository.default_branch)
         overlays:
-          - key: body.branch
+          - key: extensions.branch
             expression: body.ref.split('/')[2]
     - github:
         secretRef:
@@ -31,7 +31,7 @@ spec:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/gitops') && body.ref.endsWith(body.repository.default_branch)
         overlays:
-          - key: body.branch
+          - key: extensions.branch
             expression: body.ref.split('/')[2]
     - github:
         secretRef:
@@ -47,9 +47,9 @@ spec:
     interceptors:
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/gitops')
+          == 'chetan-rns/taxi')
         overlays:
-          - key: body.branch
+          - key: extensions.branch
             expression: body.ref.split('/')[2]
     - github:
         secretRef:
