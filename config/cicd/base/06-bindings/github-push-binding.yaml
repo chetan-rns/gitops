@@ -7,7 +7,7 @@ metadata:
 spec:
   params:
   - name: gitref
-    value: $(body.extensions.branch)
+    value: $(body.ref)
   - name: gitsha
     value: $(body.head_commit.id)
   - name: gitrepositoryurl
