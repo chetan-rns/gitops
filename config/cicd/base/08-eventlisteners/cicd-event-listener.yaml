@@ -14,7 +14,7 @@ spec:
         filter: header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/gitops' && !body.ref.endsWith(body.repository.default_branch)
         overlays:
         - key: extensions.branch
-          expression: "split(body.ref, '/')[2]"
+          expression: "split(string(body.ref), '/')[2]"
     - github:
         secretRef:
           namespace: cicd
