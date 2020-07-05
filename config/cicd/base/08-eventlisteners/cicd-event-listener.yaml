@@ -50,11 +50,11 @@ spec:
           secretKey: webhook-secret-key
           secretName: webhook-secret-dev-taxi
     - cel:
-        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/taxi')
         overlays:
         - key: body.ref
           expression: "split(body.ref, '/')[2]"
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+          == 'chetan-rns/taxi')
     name: app-ci-build-from-pr-taxi
     template:
       name: app-ci-template
