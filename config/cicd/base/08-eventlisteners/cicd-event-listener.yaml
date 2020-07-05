@@ -16,10 +16,11 @@ spec:
           secretKey: webhook-secret-key
           secretName: gitops-webhook-secret
     - cel:
-        filter: header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/gitops' && !body.ref.endsWith(body.repository.default_branch)
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+          == 'chetan-rns/gitops') && !body.ref.endsWith(body.repository.default_branch)
         overlays:
-        - key: ref
-          expression: "split(body.ref, '/')[2]"
+        - expression: split(body.ref,'/')[2]
+          key: ref
     name: ci-dryrun-from-pr
     template:
       name: ci-dryrun-from-pr-template
@@ -35,8 +36,8 @@ spec:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/gitops') && body.ref.endsWith(body.repository.default_branch)
         overlays:
-        - key: ref
-          expression: split(body.ref, '/')[2]
+        - expression: split(body.ref,'/')[2]
+          key: ref
     name: cd-deploy-from-push
     template:
       name: cd-deploy-from-push-template
@@ -51,11 +52,29 @@ spec:
           secretName: webhook-secret-dev-taxi
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/taxi')
+          == 'chetan-rns/taxi') && !body.ref.endsWith(body.repository.default_branch)
         overlays:
-        - key: ref
-          expression: "split(body.ref, '/')[2]"
+        - expression: split(body.ref,'/')[2]
+          key: ref
     name: app-ci-build-from-pr-taxi
+    template:
+      name: app-ci-template
+  - bindings:
+    - name: dev-taxi-binding
+    - name: github-binding
+    interceptors:
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: webhook-secret-dev-taxi
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+          == 'chetan-rns/taxi') && body.ref.endsWith(body.repository.default_branch)
+        overlays:
+        - expression: split(body.ref,'/')[2]
+          key: ref
+    name: app-cd-build-from-push-taxi
     template:
       name: app-ci-template
 status:

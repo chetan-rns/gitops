@@ -1,0 +1,17 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  creationTimestamp: null
+  name: github-binding
+  namespace: cicd
+spec:
+  params:
+  - name: gitref
+    value: $(body.ref)
+  - name: gitsha
+    value: $(body.head_commit.id)
+  - name: gitrepositoryurl
+    value: $(body.repository.clone_url)
+  - name: fullname
+    value: $(body.repository.full_name)
+status: {}
