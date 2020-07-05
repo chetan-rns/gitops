@@ -18,7 +18,7 @@ spec:
     - cel:
         filter: header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/gitops' && !body.ref.endsWith(body.repository.default_branch)
         overlays:
-        - key: body.ref
+        - key: ref
           expression: "split(body.ref, '/')[2]"
     name: ci-dryrun-from-pr
     template:
@@ -35,7 +35,7 @@ spec:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/gitops') && body.ref.endsWith(body.repository.default_branch)
         overlays:
-        - key: body.ref
+        - key: ref
           expression: split(body.ref, '/')[2]
     name: cd-deploy-from-push
     template:
@@ -50,11 +50,11 @@ spec:
           secretKey: webhook-secret-key
           secretName: webhook-secret-dev-taxi
     - cel:
-        overlays:
-        - key: body.ref
-          expression: split(body.ref, '/')[2]
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/taxi')
+        overlays:
+        - key: ref
+          expression: "split(body.ref, '/')[2]"
     name: app-ci-build-from-pr-taxi
     template:
       name: app-ci-template
