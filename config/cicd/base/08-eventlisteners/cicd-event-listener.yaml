@@ -10,33 +10,33 @@ spec:
   - bindings:
     - name: github-binding
     interceptors:
-    - cel:
-        filter: header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/gitops' && !body.ref.endsWith(body.repository.default_branch)
-        overlays:
-        - key: body.ref
-          expression: "split(body.ref, '/')[2]"
     - github:
         secretRef:
           namespace: cicd
           secretKey: webhook-secret-key
           secretName: gitops-webhook-secret
+    - cel:
+        filter: header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/gitops' && !body.ref.endsWith(body.repository.default_branch)
+        overlays:
+        - key: body.ref
+          expression: "split(body.ref, '/')[2]"
     name: ci-dryrun-from-pr
     template:
       name: ci-dryrun-from-pr-template
   - bindings:
     - name: github-binding
     interceptors:
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: gitops-webhook-secret
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/gitops') && body.ref.endsWith(body.repository.default_branch)
         overlays:
         - key: body.ref
           expression: "split(body.ref, '/')[2]"
-    - github:
-        secretRef:
-          namespace: cicd
-          secretKey: webhook-secret-key
-          secretName: gitops-webhook-secret
     name: cd-deploy-from-push
     template:
       name: cd-deploy-from-push-template
@@ -44,17 +44,17 @@ spec:
     - name: dev-taxi-binding
     - name: github-binding
     interceptors:
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: webhook-secret-dev-taxi
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/taxi')
         overlays:
         - key: body.ref
           expression: "split(body.ref, '/')[2]"
-    - github:
-        secretRef:
-          namespace: cicd
-          secretKey: webhook-secret-key
-          secretName: webhook-secret-dev-taxi
     name: app-ci-build-from-pr-taxi
     template:
       name: app-ci-template
