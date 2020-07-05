@@ -36,7 +36,7 @@ spec:
           == 'chetan-rns/gitops') && body.ref.endsWith(body.repository.default_branch)
         overlays:
         - key: body.ref
-          expression: "split(body.ref, '/')[2]"
+          expression: "split(body.ref, /)[2]"
     name: cd-deploy-from-push
     template:
       name: cd-deploy-from-push-template
