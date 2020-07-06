@@ -8,7 +8,7 @@ spec:
   serviceAccountName: pipeline
   triggers:
   - bindings:
-    - name: github-binding
+    - name: github-push-binding
     interceptors:
     - github:
         secretRef:
@@ -17,7 +17,7 @@ spec:
           secretName: gitops-webhook-secret
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/gitops') && !body.ref.endsWith(body.repository.default_branch)
+          == 'chetan-rns/gitops') && body.ref != 'refs/heads/'+body.repository.default_branch
         overlays:
         - expression: split(body.ref,'/')[2]
           key: ref
@@ -25,7 +25,7 @@ spec:
     template:
       name: ci-dryrun-from-pr-template
   - bindings:
-    - name: github-binding
+    - name: github-push-binding
     interceptors:
     - github:
         secretRef:
@@ -34,7 +34,7 @@ spec:
           secretName: gitops-webhook-secret
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/gitops') && body.ref.endsWith(body.repository.default_branch)
+          == 'chetan-rns/gitops') && body.ref == 'refs/heads/'+body.repository.default_branch
         overlays:
         - expression: split(body.ref,'/')[2]
           key: ref
@@ -43,7 +43,7 @@ spec:
       name: cd-deploy-from-push-template
   - bindings:
     - name: dev-taxi-binding
-    - name: github-binding
+    - name: github-push-binding
     interceptors:
     - github:
         secretRef:
@@ -52,7 +52,7 @@ spec:
           secretName: webhook-secret-dev-taxi
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/taxi') && !body.ref.endsWith(body.repository.default_branch)
+          == 'chetan-rns/taxi') && body.ref != 'refs/heads/'+body.repository.default_branch
         overlays:
         - expression: split(body.ref,'/')[2]
           key: ref
@@ -61,7 +61,7 @@ spec:
       name: app-ci-template
   - bindings:
     - name: dev-taxi-binding
-    - name: github-binding
+    - name: github-push-binding
     interceptors:
     - github:
         secretRef:
@@ -70,7 +70,7 @@ spec:
           secretName: webhook-secret-dev-taxi
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/taxi') && body.ref.endsWith(body.repository.default_branch)
+          == 'chetan-rns/taxi') && body.ref == 'refs/heads/'+body.repository.default_branch
         overlays:
         - expression: split(body.ref,'/')[2]
           key: ref
