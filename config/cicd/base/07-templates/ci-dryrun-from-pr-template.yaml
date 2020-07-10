@@ -21,6 +21,8 @@ spec:
     metadata:
       creationTimestamp: null
       name: ci-dryrun-from-pr-pipeline-$(uid)
+      annotations:
+        argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
       pipelineRef:
         name: ci-dryrun-from-pr-pipeline
