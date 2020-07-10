@@ -25,6 +25,10 @@ spec:
     jsonPointers:
     - /status
     kind: TriggerBinding
+  - group: route.openshift.io
+    jsonPointers:
+    - /spec/host
+    kind: Route
   project: default
   source:
     path: config/cicd/overlays
