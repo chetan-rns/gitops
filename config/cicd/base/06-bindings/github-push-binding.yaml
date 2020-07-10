@@ -12,6 +12,4 @@ spec:
     value: $(body.head_commit.id)
   - name: gitrepositoryurl
     value: $(body.repository.clone_url)
-  - name: fullname
-    value: $(body.repository.full_name)
 status: {}
