@@ -6,9 +6,9 @@ metadata:
 data:
   resource.exclusions: |
     - apiGroups:
-      - tekton.dev
+      - "tekton.dev"
       kinds:
-      - PipelineRun
-      - TaskRun
+      - "PipelineRun"
+      - "TaskRun"
       clusters:
-      - *
+      - "*"
