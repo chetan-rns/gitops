@@ -1,4 +1,2 @@
 resources:
-- cicd-app.yaml
-- dev-app-taxi-app.yaml
-- argo-ignore.yaml
+- argo-app.yaml
