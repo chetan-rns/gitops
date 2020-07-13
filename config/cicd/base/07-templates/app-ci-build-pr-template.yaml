@@ -28,8 +28,6 @@ spec:
     metadata:
       creationTimestamp: null
       name: app-ci-pipeline-run-$(uid)
-      annotations:
-        argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
       params:
       - name: REPO
