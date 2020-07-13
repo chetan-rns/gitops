@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
   name: argo-ignore
+  namespace: argocd 
   labels:
     example: resource-exclusions
 spec:
