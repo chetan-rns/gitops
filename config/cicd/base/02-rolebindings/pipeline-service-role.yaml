@@ -9,6 +9,7 @@ rules:
   resources:
   - namespaces
   - services
+  - configmaps
   verbs:
   - patch
   - get
