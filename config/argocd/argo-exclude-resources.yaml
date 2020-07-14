@@ -7,3 +7,6 @@ metadata:
 spec:
   resourceExclusions: "|\n\t- apiGroups:\n\t\t- tekton.dev\n\tkinds:\n\t\t- TaskRun\n\t\t-
     PipelineRun\n\tclusters:\n\t\t- *"
+  server:
+      route:
+        enabled: true
