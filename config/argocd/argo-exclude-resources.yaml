@@ -1,9 +1,9 @@
-apiVersion: v1
-data:
-  resource.exclusions: "|\n\t- apiGroups:\n\t\t- tekton.dev\n\tkinds:\n\t\t- TaskRun\n\t\t-
-    PipelineRun\n\tclusters:\n\t\t- *"
-kind: ConfigMap
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
 metadata:
   creationTimestamp: null
-  name: argocd-cm
+  name: argocd
   namespace: argocd
+spec:
+  resourceExclusions: "|\n\t- apiGroups:\n\t\t- tekton.dev\n\tkinds:\n\t\t- TaskRun\n\t\t-
+    PipelineRun\n\tclusters:\n\t\t- *"
