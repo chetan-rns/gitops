@@ -9,7 +9,6 @@ rules:
   resources:
   - namespaces
   - services
-  - configmaps
   verbs:
   - patch
   - get
@@ -50,6 +49,7 @@ rules:
   - argoproj.io
   resources:
   - applications
+  - argocd
   verbs:
   - get
   - create
