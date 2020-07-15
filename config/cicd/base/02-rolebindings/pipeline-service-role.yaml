@@ -49,7 +49,7 @@ rules:
   - argoproj.io
   resources:
   - applications
-  - argocd
+  - argocds
   verbs:
   - get
   - create
