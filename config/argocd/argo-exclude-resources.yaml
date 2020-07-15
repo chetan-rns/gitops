@@ -5,14 +5,8 @@ metadata:
   name: argocd
   namespace: argocd
 spec:
-  resourceExclusions: |
-    - apiGroups:
-      - tekton.dev
-      kinds:
-      - TaskRun
-      - PipelineRun
-      clusters:
-      - "*"
+  resourceExclusions: "|\n\t\t- apiGroups:\n\t\t  - tekton.dev\n\t\t  kinds:\n\t\t
+    \ - TaskRun\n\t\t  - PipelineRun\n\t\t  clusters:\n\t\t  - \"*\""
   server:
     route:
-      enabled: true
+      enabled: true  
