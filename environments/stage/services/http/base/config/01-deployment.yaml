@@ -6,7 +6,7 @@ metadata:
   labels:
     app: go-svc
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: go-svc
