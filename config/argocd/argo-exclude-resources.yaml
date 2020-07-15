@@ -7,12 +7,12 @@ metadata:
 spec:
   resourceExclusions: |
     - apiGroups:
-    - tekton.dev
-    clusters:
-    - '*'
-    kinds:
-    - TaskRun
-    - PipelineRun
+      - tekton.dev
+      clusters:
+      - '*'
+      kinds:
+      - TaskRun
+      - PipelineRun
   server:
     route:
       enabled: true
