@@ -12,7 +12,7 @@ spec:
       - TaskRun
       - PipelineRun
       clusters:
-      - *
+      - "*"
   server:
       route:
         enabled: true
