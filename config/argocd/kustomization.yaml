@@ -1,5 +1,5 @@
 resources:
-# - argo-app.yaml
+- argo-app.yaml
 - argo-exclude-resources.yaml
 - cicd-app.yaml
 - dev-app-taxi-app.yaml
