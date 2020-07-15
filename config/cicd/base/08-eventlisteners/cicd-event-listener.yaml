@@ -38,6 +38,21 @@ spec:
     name: app-ci-build-from-pr-taxi
     template:
       name: app-ci-template
+  - bindings:
+    - name: github-pr-binding
+    interceptors:
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
+          'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
+          == 'chetan-rns/Go-Server'
+    - github:
+        secretRef:
+          namespace: cicd
+          secretKey: webhook-secret-key
+          secretName: webhook-secret-stage-http
+    name: app-ci-build-from-pr-http
+    template:
+      name: app-ci-template
 status:
   configuration:
     generatedName: ""

@@ -26,5 +26,16 @@ environments:
       secret:
         name: webhook-secret-dev-taxi
         namespace: cicd
-- name: stage
+- apps:
+  - name: app-1
+    services:
+    - http
+  name: stage
+  services:
+  - name: http
+    source_url: https://github.com/chetan-rns/Go-Server.git
+    webhook:
+      secret:
+        name: webhook-secret-stage-http
+        namespace: cicd
 gitops_url: https://github.com/chetan-rns/gitops.git
