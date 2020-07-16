@@ -23,7 +23,7 @@ spec:
           key: ref
     name: ci-dryrun-from-push
     template:
-      name: ci-dryrun-from-pr-template
+      name: ci-dryrun-from-push-template
   - bindings:
     - name: dev-taxi-binding
     - name: github-push-binding
