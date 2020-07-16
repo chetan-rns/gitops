@@ -19,7 +19,7 @@ spec:
         app.kubernetes.io/part-of: app-taxi
     spec:
       containers:
-      - image: quay.io/cbanavik/taxi:master-f2c4d748bdcc835d467e841838ce5769fbc34553
+      - image: quay.io/cbanavik/taxi:master-732311b22d0683e73f2f963102eba5c4e38631ce
         imagePullPolicy: Always
         name: taxi
         ports:
