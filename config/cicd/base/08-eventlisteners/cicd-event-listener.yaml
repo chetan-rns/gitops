@@ -8,34 +8,38 @@ spec:
   serviceAccountName: pipeline
   triggers:
   - bindings:
-    - name: github-pr-binding
+    - name: github-push-binding
     interceptors:
-    - cel:
-        filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
-          'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
-          == 'chetan-rns/gitops'
     - github:
         secretRef:
           namespace: cicd
           secretKey: webhook-secret-key
           secretName: gitops-webhook-secret
-    name: ci-dryrun-from-pr
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+          == 'chetan-rns/gitops')
+        overlays:
+        - expression: split(body.ref,'/')[2]
+          key: ref
+    name: ci-dryrun-from-push
     template:
       name: ci-dryrun-from-pr-template
   - bindings:
     - name: dev-taxi-binding
-    - name: github-pr-binding
+    - name: github-push-binding
     interceptors:
-    - cel:
-        filter: (header.match('X-GitHub-Event', 'pull_request') && body.action ==
-          'opened' || body.action == 'synchronize') && body.pull_request.head.repo.full_name
-          == 'chetan-rns/taxi'
     - github:
         secretRef:
           namespace: cicd
           secretKey: webhook-secret-key
           secretName: webhook-secret-dev-taxi
-    name: app-ci-build-from-pr-taxi
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+          == 'chetan-rns/taxi')
+        overlays:
+        - expression: split(body.ref,'/')[2]
+          key: ref
+    name: app-ci-build-from-push-taxi
     template:
       name: app-ci-template
 status:

@@ -12,7 +12,7 @@ environments:
   pipelines:
     integration:
       bindings:
-      - github-pr-binding
+      - github-push-binding
       template: app-ci-template
   services:
   - name: taxi
@@ -20,7 +20,7 @@ environments:
       integration:
         bindings:
         - dev-taxi-binding
-        - github-pr-binding
+        - github-push-binding
     source_url: https://github.com/chetan-rns/taxi.git
     webhook:
       secret:
