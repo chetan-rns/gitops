@@ -2,8 +2,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
   creationTimestamp: null
-  name: argocd
-  namespace: argocd
+  name: gitops-argo
+  namespace: gitops-argo
 spec:
   resourceExclusions: |
     - apiGroups:

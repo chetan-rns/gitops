@@ -21,7 +21,7 @@ spec:
     script: |
       #!/bin/sh
       is_argocd=false
-      argo_path="config/argocd"
+      argo_path="config/gitops-argo"
       cicd_path="config/cicd"
       cmd=kubectl
       overall_exit=0
