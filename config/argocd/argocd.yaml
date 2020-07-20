@@ -4,6 +4,8 @@ metadata:
   creationTimestamp: null
   name: argocd
   namespace: argocd
+  labels:
+    app.kubernetes.io/instance: argo-app
 spec:
   resourceExclusions: |
     - apiGroups:
