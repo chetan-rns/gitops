@@ -3,7 +3,7 @@ kind: Application
 metadata:
   creationTimestamp: null
   name: dev-app-taxi
-  namespace: gitops-argo
+  namespace: argocd
 spec:
   destination:
     namespace: dev

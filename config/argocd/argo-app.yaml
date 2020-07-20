@@ -3,10 +3,10 @@ kind: Application
 metadata:
   creationTimestamp: null
   name: argo-app
-  namespace: gitops-argo
+  namespace: argocd
 spec:
   destination:
-    namespace: gitops-argo
+    namespace: argocd
     server: https://kubernetes.default.svc
   ignoreDifferences:
   - group: argoproj.io
@@ -31,7 +31,7 @@ spec:
     kind: Route
   project: default
   source:
-    path: config/gitops-argo
+    path: config/argocd
     repoURL: https://github.com/chetan-rns/gitops.git
   syncPolicy:
     automated:

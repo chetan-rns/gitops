@@ -1,6 +1,6 @@
 config:
   argocd:
-    namespace: gitops-argo
+    namespace: argocd
   pipelines:
     name: cicd
 environments:

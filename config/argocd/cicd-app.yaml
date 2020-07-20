@@ -3,7 +3,7 @@ kind: Application
 metadata:
   creationTimestamp: null
   name: cicd-app
-  namespace: gitops-argo
+  namespace: argocd
 spec:
   destination:
     namespace: cicd
