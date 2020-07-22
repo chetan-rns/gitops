@@ -59,7 +59,7 @@ spec:
         resourceSpec:
           params:
           - name: revision
-            value: $(params.io.openshift.build.commit.ref)
+            value: $(params.io.openshift.build.commit.id)
           - name: url
             value: $(params.gitrepositoryurl)
           type: git
