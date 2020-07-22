@@ -19,6 +19,7 @@ rules:
   - clusterroles
   - roles
   verbs:
+  - get
   - bind
   - patch
 - apiGroups:
