@@ -12,7 +12,7 @@ spec:
   params:
   - default: master
     description: The git revision
-    name: gitref
+    name: io.openshift.build.commit.ref
   - description: The git repository url
     name: gitrepositoryurl
   resourcetemplates:
@@ -29,7 +29,7 @@ spec:
         resourceSpec:
           params:
           - name: revision
-            value: $(params.gitref)
+            value: $(params.io.openshift.build.commit.ref)
           - name: url
             value: $(params.gitrepositoryurl)
           type: git

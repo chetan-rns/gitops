@@ -11,9 +11,15 @@ metadata:
 spec:
   params:
   - description: The git branch for this PR.
-    name: gitref
+    name: io.openshift.build.commit.ref
   - description: the specific commit SHA.
-    name: gitsha
+    name: io.openshift.build.commit.id
+  - description: The date at which the commit was made
+    name: io.openshift.build.commit.date
+  - description: The name of the github user handle that made the commit
+    name: io.openshift.build.commit.author
+  - description: The commit message
+    name: io.openshift.build.commit.message
   - description: The git repository URL.
     name: gitrepositoryurl
   - description: The GitHub repository for this PullRequest.
@@ -32,10 +38,20 @@ spec:
       params:
       - name: REPO
         value: $(params.fullname)
-      - name: COMMIT_SHA
-        value: $(params.gitsha)
+      - name: GIT_REPO
+        value: $(params.gitrepositoryurl)
       - name: TLSVERIFY
         value: $(params.tlsVerify)
+      - name: COMMIT_SHA
+        value: $(params.io.openshift.build.commit.id)
+      - name: GIT_REF
+        value: $(params.io.openshift.build.commit.ref)
+      - name: COMMIT_DATE
+        value: $(params.io.openshift.build.commit.date)
+      - name: COMMIT_AUTHOR
+        value: $(params.io.openshift.build.commit.author)
+      - name: COMMIT_MESSAGE
+        value: $(params.io.openshift.build.commit.message)
       pipelineRef:
         name: app-ci-pipeline
       resources:
@@ -43,7 +59,7 @@ spec:
         resourceSpec:
           params:
           - name: revision
-            value: $(params.gitref)
+            value: $(params.io.openshift.build.commit.ref)
           - name: url
             value: $(params.gitrepositoryurl)
           type: git
@@ -51,7 +67,7 @@ spec:
         resourceSpec:
           params:
           - name: url
-            value: $(params.imageRepo):$(params.gitref)-$(params.gitsha)
+            value: $(params.imageRepo):$(params.io.openshift.build.commit.ref)-$(params.io.openshift.build.commit.id)
           type: image
       serviceAccountName: pipeline
     status: {}
