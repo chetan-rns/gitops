@@ -1,10 +1,6 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-  annotations:
-    tekton.dev/git-status: "true"
-    tekton.dev/status-context: dev-ci-build-from-pr
-    tekton.dev/status-description: Dev CI Build
   creationTimestamp: null
   name: app-ci-template
   namespace: cicd
@@ -32,6 +28,10 @@ spec:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
+    annotations:
+      tekton.dev/git-status: "true"
+      tekton.dev/status-context: dev-ci-build-from-pr
+      tekton.dev/status-description: Dev CI Build
       creationTimestamp: null
       name: app-ci-pipeline-run-$(uid)
     spec:
