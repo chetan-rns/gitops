@@ -15,10 +15,10 @@ spec:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
-    annotations:
-      tekton.dev/git-status: "true"
-      tekton.dev/status-context: ci-dryrun-from-push-pipeline
-      tekton.dev/status-description: CI dry run on push event
+      annotations:
+        tekton.dev/git-status: "true"
+        tekton.dev/status-context: ci-dryrun-from-push-pipeline
+        tekton.dev/status-description: CI dry run on push event
       creationTimestamp: null
       name: ci-dryrun-from-push-pipeline-$(uid)
     spec:
