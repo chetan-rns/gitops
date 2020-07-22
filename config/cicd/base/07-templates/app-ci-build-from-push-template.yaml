@@ -31,7 +31,7 @@ spec:
       annotations:
         tekton.dev/git-status: "true"
         tekton.dev/status-context: dev-ci-build-from-pr
-        tekton.dev/status-description: Dev CI Build
+        tekton.dev/status-description: CI build on push event
       creationTimestamp: null
       name: app-ci-pipeline-run-$(uid)
     spec:
