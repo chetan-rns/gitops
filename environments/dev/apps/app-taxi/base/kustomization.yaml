@@ -1,3 +1,3 @@
 bases:
-- ../../../services/taxi
+- ../services/taxi
 - ../../../env/base
