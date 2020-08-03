@@ -1,0 +1,5 @@
+resources:
+  - 01-application.yaml
+  - 02-service.yaml
+
+namespace: prod
