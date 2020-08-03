@@ -7,7 +7,6 @@ metadata:
     app.kubernetes.io/component: nodejs-rest-http-crud
     app.kubernetes.io/instance: nodejs-rest-http-crud
     app.kubernetes.io/part-of: nodejs-rest-http-crud-app
-    app.openshift.io/runtime-namespace: chetan-prod
   name: nodejs-rest-http-crud
   namespace: prod
 spec:
