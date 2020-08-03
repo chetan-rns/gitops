@@ -1,2 +1,7 @@
+kind: ""
+apiversion: ""
+images:
+- name: quay.io/cbanavik/taxi
+  newTag: v0.0.1
 bases:
 - ./config
