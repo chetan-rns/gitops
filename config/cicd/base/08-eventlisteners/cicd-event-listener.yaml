@@ -42,24 +42,6 @@ spec:
     name: app-ci-build-from-push-taxi
     template:
       name: app-ci-template
-  - bindings:
-    - name: prod-api-api-service-binding
-    - name: github-push-binding
-    interceptors:
-    - github:
-        secretRef:
-          namespace: cicd
-          secretKey: webhook-secret-key
-          secretName: webhook-secret-prod-api-service
-    - cel:
-        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
-          == 'chetan-rns/nodejs-rest-http-crud')
-        overlays:
-        - expression: split(body.ref,'/')[2]
-          key: ref
-    name: app-ci-build-from-push-api-service
-    template:
-      name: app-ci-template
 status:
   configuration:
     generatedName: ""
