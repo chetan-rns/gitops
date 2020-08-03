@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/instance: nodejs-rest-http-crud
     app.kubernetes.io/part-of: nodejs-rest-http-crud-app
   name: nodejs-rest-http-crud
-  namespace: chetan-prod
+  namespace: prod
 spec:
   clusterIP: 172.30.28.84
   ports:
@@ -39,7 +39,7 @@ metadata:
     app.kubernetes.io/part-of: nodejs-rest-http-crud-app
     app.openshift.io/runtime-version: latest
   name: nodejs-rest-http-crud
-  namespace: chetan-prod
+  namespace: prod
 spec:
   host: nodejs-rest-http-crud-chetan-prod.apps.viraj091920.devcluster.openshift.com
   port:
