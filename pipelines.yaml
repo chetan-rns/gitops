@@ -24,5 +24,25 @@ environments:
       bindings:
       - github-push-binding
       template: app-ci-template
+- apps:
+  - name: http
+    services:
+    - name: api-service
+      pipelines:
+        integration:
+          bindings:
+          - prod-http-api-service-binding
+          - github-push-binding
+      source_url: https://github.com/chetan-rns/nodejs-rest-http-crud.git
+      webhook:
+        secret:
+          name: webhook-secret-prod-api-service
+          namespace: cicd
+  name: prod
+  pipelines:
+    integration:
+      bindings:
+      - github-push-binding
+      template: app-ci-template
 - name: stage
 gitops_url: https://github.com/chetan-rns/gitops.git

@@ -10,12 +10,15 @@ resources:
 - 03-secrets/docker-config.yaml
 - 03-secrets/gitops-webhook-secret.yaml
 - 03-secrets/webhook-secret-dev-taxi.yaml
+- 03-secrets/webhook-secret-prod-api-service.yaml
 - 04-tasks/deploy-from-source-task.yaml
 - 04-tasks/deploy-using-kubectl-task.yaml
 - 05-pipelines/app-ci-pipeline.yaml
 - 05-pipelines/ci-dryrun-from-push-pipeline.yaml
 - 06-bindings/dev-app-taxi-taxi-binding.yaml
 - 06-bindings/github-push-binding.yaml
+- 06-bindings/prod-api-api-service-binding.yaml
+- 06-bindings/prod-http-api-service-binding.yaml
 - 07-templates/app-ci-build-from-push-template.yaml
 - 07-templates/ci-dryrun-from-push-template.yaml
 - 08-eventlisteners/cicd-event-listener.yaml
