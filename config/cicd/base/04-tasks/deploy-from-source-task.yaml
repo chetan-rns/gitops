@@ -19,7 +19,7 @@ spec:
     name: run-kubectl
     resources: {}
     script: |
-      #!/bin/sh
+      #!/bin/bash
       is_argocd=false
       argo_path="config/argocd"
       cicd_path="config/cicd"

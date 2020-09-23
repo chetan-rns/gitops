@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: commit-status-tracker
+    app.kubernetes.io/part-of: commit-status-tracker-operator
   name: commit-status-tracker
   namespace: cicd
 spec:
@@ -32,7 +35,9 @@ spec:
               fieldPath: metadata.name
         - name: OPERATOR_NAME
           value: commit-status-tracker
-        image: quay.io/redhat-developer/commit-status-tracker:v0.0.2
+        - name: STATUS_TRACKER_SECRET
+          value: git-host-access-token
+        image: quay.io/redhat-developer/commit-status-tracker:v0.0.4
         imagePullPolicy: Always
         name: commit-status-tracker
         resources: {}

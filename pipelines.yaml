@@ -26,3 +26,4 @@ environments:
       template: app-ci-template
 - name: stage
 gitops_url: https://github.com/chetan-rns/gitops.git
+version: 1
