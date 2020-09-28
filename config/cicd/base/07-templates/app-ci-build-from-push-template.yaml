@@ -22,7 +22,7 @@ spec:
     name: fullname
   - description: The repository to push built images to.
     name: imageRepo
-  - description: Enable image repostiory TLS certification verification.
+  - description: Enable image repository TLS certification verification.
     name: tlsVerify
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
