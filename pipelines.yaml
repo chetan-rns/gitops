@@ -24,6 +24,28 @@ environments:
       bindings:
       - github-push-binding
       template: app-ci-template
-- name: stage
+- apps:
+  - name: backend
+    services:
+    - name: http
+      webhook:
+        secret:
+          name: webhook-secret-prod-http
+          namespace: cicd
+  name: prod
+  pipelines:
+    integration:
+      bindings:
+      - github-push-binding
+      template: app-ci-template
+- apps:
+  - name: database
+    services:
+    - name: redis
+      webhook:
+        secret:
+          name: webhook-secret-stage-redis
+          namespace: cicd
+  name: stage
 gitops_url: https://github.com/chetan-rns/gitops.git
 version: 1

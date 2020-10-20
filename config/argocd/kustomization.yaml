@@ -3,3 +3,5 @@ resources:
 - argocd.yaml
 - cicd-app.yaml
 - dev-app-taxi-app.yaml
+- prod-backend-app.yaml
+- stage-database-app.yaml
