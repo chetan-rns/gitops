@@ -7,7 +7,7 @@ metadata:
 spec:
   params:
   - name: imageRepo
-    value: image-registry.openshift-image-registry.svc:5000/argocd/taxi
+    value: quay.io/cbanavik/taxi
   - name: tlsVerify
-    value: "false"
+    value: "true"
 status: {}
