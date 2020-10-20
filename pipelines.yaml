@@ -32,6 +32,13 @@ environments:
         secret:
           name: webhook-secret-prod-http
           namespace: cicd
+  - name: app-taxi
+    services:
+    - name: taxi
+      webhook:
+        secret:
+          name: webhook-secret-prod-taxi
+          namespace: cicd
   name: prod
   pipelines:
     integration:
@@ -45,6 +52,13 @@ environments:
       webhook:
         secret:
           name: webhook-secret-stage-redis
+          namespace: cicd
+  - name: app-taxi
+    services:
+    - name: taxi
+      webhook:
+        secret:
+          name: webhook-secret-stage-taxi
           namespace: cicd
   name: stage
 gitops_url: https://github.com/chetan-rns/gitops.git
