@@ -5,10 +5,11 @@ metadata:
   name: cicd-event-listener
   namespace: cicd
 spec:
+  podTemplate: {}
   serviceAccountName: pipeline
   triggers:
   - bindings:
-    - name: github-push-binding
+    - ref: github-push-binding
     interceptors:
     - github:
         secretRef:
@@ -18,14 +19,14 @@ spec:
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/gitops')
         overlays:
-        - expression: split(body.ref,'/')[2]
+        - expression: body.ref.split('/')[2]
           key: ref
     name: ci-dryrun-from-push
     template:
       name: ci-dryrun-from-push-template
   - bindings:
-    - name: dev-app-taxi-taxi-binding
-    - name: github-push-binding
+    - ref: dev-app-taxi-taxi-binding
+    - ref: github-push-binding
     interceptors:
     - github:
         secretRef:
@@ -35,7 +36,7 @@ spec:
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/taxi')
         overlays:
-        - expression: split(body.ref,'/')[2]
+        - expression: body.ref.split('/')[2]
           key: ref
     name: app-ci-build-from-push-taxi
     template:
