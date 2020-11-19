@@ -8,7 +8,7 @@ metadata:
   name: taxi
   namespace: dev
 spec:
-  replicas: 4
+  replicas: 6
   selector:
     matchLabels:
       app.kubernetes.io/name: taxi
