@@ -24,6 +24,8 @@ spec:
     name: imageRepo
   - description: Enable image repository TLS certification verification.
     name: tlsVerify
+  - description: Extra parameters passed for the push command when pushing images.
+    name: imageArgs
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
@@ -52,6 +54,8 @@ spec:
         value: $(params.io.openshift.build.commit.author)
       - name: COMMIT_MESSAGE
         value: $(params.io.openshift.build.commit.message)
+      - name: BUILD_EXTRA_ARGS
+        value: $(params.imageArgs)
       pipelineRef:
         name: app-ci-pipeline
       resources:
