@@ -1,6 +1,6 @@
 config:
   argocd:
-    namespace: argocd
+    namespace: openshift-gitops
   pipelines:
     name: cicd
 environments:
@@ -24,28 +24,6 @@ environments:
       bindings:
       - github-push-binding
       template: app-ci-template
-- apps:
-  - name: app-taxi
-    services:
-    - name: taxi
-      webhook:
-        secret:
-          name: webhook-secret-prod-taxi
-          namespace: cicd
-  name: prod
-  pipelines:
-    integration:
-      bindings:
-      - github-push-binding
-      template: app-ci-template
-- apps:
-  - name: app-taxi
-    services:
-    - name: taxi
-      webhook:
-        secret:
-          name: webhook-secret-stage-taxi
-          namespace: cicd
-  name: stage
+- name: stage
 gitops_url: https://github.com/chetan-rns/gitops.git
 version: 1

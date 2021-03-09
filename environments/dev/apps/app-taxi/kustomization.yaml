@@ -1,2 +1,4 @@
 bases:
 - overlays
+commonLabels:
+  app.openshift.io/vcs-source: chetan-rns/gitops

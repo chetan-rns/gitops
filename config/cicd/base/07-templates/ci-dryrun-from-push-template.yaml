@@ -31,9 +31,9 @@ spec:
         resourceSpec:
           params:
           - name: revision
-            value: $(params.io.openshift.build.commit.id)
+            value: $(tt.params.io.openshift.build.commit.id)
           - name: url
-            value: $(params.gitrepositoryurl)
+            value: $(tt.params.gitrepositoryurl)
           type: git
       serviceAccountName: pipeline
     status: {}

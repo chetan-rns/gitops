@@ -5,7 +5,9 @@ metadata:
   name: cicd-event-listener
   namespace: cicd
 spec:
+  namespaceSelector: {}
   podTemplate: {}
+  resources: {}
   serviceAccountName: pipeline
   triggers:
   - bindings:
@@ -13,7 +15,6 @@ spec:
     interceptors:
     - github:
         secretRef:
-          namespace: cicd
           secretKey: webhook-secret-key
           secretName: gitops-webhook-secret
     - cel:
@@ -30,7 +31,6 @@ spec:
     interceptors:
     - github:
         secretRef:
-          namespace: cicd
           secretKey: webhook-secret-key
           secretName: webhook-secret-dev-taxi
     - cel:

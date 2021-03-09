@@ -2,15 +2,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   creationTimestamp: null
-  name: prod-app-taxi
-  namespace: argocd
+  name: stage-env
+  namespace: openshift-gitops
 spec:
   destination:
-    namespace: prod
+    namespace: stage
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: environments/prod/apps/app-taxi/base
+    path: environments/stage/env/overlays
     repoURL: https://github.com/chetan-rns/gitops.git
   syncPolicy:
     automated:
