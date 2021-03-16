@@ -21,6 +21,7 @@ resources:
 - 05-pipelines/ci-dryrun-from-push-pipeline.yaml
 - 06-bindings/dev-app-Go-Server-Go-Server-binding.yaml
 - 06-bindings/dev-app-go-server-go-server-binding.yaml
+- 06-bindings/prod-app-taxi-binding.yaml
 - 06-bindings/github-push-binding.yaml
 - 07-templates/app-ci-build-from-push-template.yaml
 - 07-templates/ci-dryrun-from-push-template.yaml
