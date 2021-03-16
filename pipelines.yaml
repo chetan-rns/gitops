@@ -5,18 +5,18 @@ config:
     name: cicd
 environments:
 - apps:
-  - name: app-Go-Server
+  - name: app-go-server
     services:
-    - name: Go-Server
+    - name: go-server
       pipelines:
         integration:
           bindings:
-          - dev-app-Go-Server-Go-Server-binding
+          - dev-app-go-server-go-server-binding
           - github-push-binding
-      source_url: https://github.com/chetan-rns/Go-Server.git
+      source_url: https://github.com/chetan-rns/go-server.git
       webhook:
         secret:
-          name: webhook-secret-dev-Go-Server
+          name: webhook-secret-dev-go-server
           namespace: cicd
   name: dev
   pipelines:

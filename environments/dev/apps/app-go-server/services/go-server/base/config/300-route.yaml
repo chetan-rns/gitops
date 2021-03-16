@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  name: go-server
+  namespace: dev
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: go-server
+    weight: 100
+  wildcardPolicy: None

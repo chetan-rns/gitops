@@ -26,19 +26,19 @@ spec:
     template:
       name: ci-dryrun-from-push-template
   - bindings:
-    - ref: dev-app-Go-Server-Go-Server-binding
+    - ref: dev-app-go-server-go-server-binding
     - ref: github-push-binding
     interceptors:
     - github:
         secretRef:
           secretKey: webhook-secret-key
-          secretName: webhook-secret-dev-Go-Server
+          secretName: webhook-secret-dev-go-server
     - cel:
-        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/Go-Server')
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/go-server')
         overlays:
         - expression: body.ref.split('/')[2]
           key: ref
-    name: app-ci-build-from-push-Go-Server
+    name: app-ci-build-from-push-go-server
     template:
       name: app-ci-template
 status:
