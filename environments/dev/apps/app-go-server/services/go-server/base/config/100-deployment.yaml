@@ -22,7 +22,7 @@ spec:
         app.kubernetes.io/part-of: app-go-server
     spec:
       containers:
-      - image: nginxinc/nginx-unprivileged:latest
+      - image: image-registry.openshift-image-registry.svc:5000/cicd/go-server:chetan-rns-patch-2-caea03ab3dfe379b5339db89c36421a24fabf58b
         imagePullPolicy: Always
         name: go-server
         ports:
