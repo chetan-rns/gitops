@@ -13,7 +13,6 @@ resources:
 - 03-secrets/git-host-access-token.yaml
 - 03-secrets/git-host-basic-auth-token.yaml
 - 03-secrets/gitops-webhook-secret.yaml
-- 03-secrets/webhook-secret-dev-Go-Server.yaml
 - 03-secrets/webhook-secret-dev-go-server.yaml
 - 03-secrets/webhook-secret-prod-taxi.yaml
 - 04-tasks/deploy-from-source-task.yaml
