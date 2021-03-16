@@ -3,4 +3,6 @@ resources:
 - cicd-app.yaml
 - dev-app-go-server-app.yaml
 - dev-env-app.yaml
+- prod-app-app.yaml
+- prod-env-app.yaml
 - stage-env-app.yaml

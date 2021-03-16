@@ -4,6 +4,6 @@ metadata:
   annotations:
     app.openshift.io/vcs-uri: https://github.com/chetan-rns/gitops.git?ref=main
   creationTimestamp: null
-  name: stage
+  name: prod
 spec: {}
 status: {}

@@ -13,10 +13,13 @@ resources:
 - 03-secrets/git-host-access-token.yaml
 - 03-secrets/git-host-basic-auth-token.yaml
 - 03-secrets/gitops-webhook-secret.yaml
+- 03-secrets/webhook-secret-dev-Go-Server.yaml
 - 03-secrets/webhook-secret-dev-go-server.yaml
+- 03-secrets/webhook-secret-prod-taxi.yaml
 - 04-tasks/deploy-from-source-task.yaml
 - 05-pipelines/app-ci-pipeline.yaml
 - 05-pipelines/ci-dryrun-from-push-pipeline.yaml
+- 06-bindings/dev-app-Go-Server-Go-Server-binding.yaml
 - 06-bindings/dev-app-go-server-go-server-binding.yaml
 - 06-bindings/github-push-binding.yaml
 - 07-templates/app-ci-build-from-push-template.yaml
