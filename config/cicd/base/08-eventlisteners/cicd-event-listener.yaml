@@ -43,6 +43,7 @@ spec:
       name: app-ci-template
   - bindings:
     - ref: github-push-binding
+    - ref: prod-app-taxi-binding
     interceptors:
     - github:
         secretRef:
