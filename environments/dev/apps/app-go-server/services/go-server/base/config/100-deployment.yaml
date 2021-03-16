@@ -8,7 +8,7 @@ metadata:
   name: go-server
   namespace: dev
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: go-server
