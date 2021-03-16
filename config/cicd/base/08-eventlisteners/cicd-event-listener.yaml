@@ -26,19 +26,19 @@ spec:
     template:
       name: ci-dryrun-from-push-template
   - bindings:
-    - ref: dev-app-taxi-taxi-binding
+    - ref: dev-app-Go-Server-Go-Server-binding
     - ref: github-push-binding
     interceptors:
     - github:
         secretRef:
           secretKey: webhook-secret-key
-          secretName: webhook-secret-dev-taxi
+          secretName: webhook-secret-dev-Go-Server
     - cel:
-        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/taxi')
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/Go-Server')
         overlays:
         - expression: body.ref.split('/')[2]
           key: ref
-    name: app-ci-build-from-push-taxi
+    name: app-ci-build-from-push-Go-Server
     template:
       name: app-ci-template
 status:

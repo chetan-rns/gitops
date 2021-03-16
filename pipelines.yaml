@@ -5,18 +5,18 @@ config:
     name: cicd
 environments:
 - apps:
-  - name: app-taxi
+  - name: app-Go-Server
     services:
-    - name: taxi
+    - name: Go-Server
       pipelines:
         integration:
           bindings:
-          - dev-app-taxi-taxi-binding
+          - dev-app-Go-Server-Go-Server-binding
           - github-push-binding
-      source_url: https://github.com/chetan-rns/taxi.git
+      source_url: https://github.com/chetan-rns/Go-Server.git
       webhook:
         secret:
-          name: webhook-secret-dev-taxi
+          name: webhook-secret-dev-Go-Server
           namespace: cicd
   name: dev
   pipelines:

@@ -2,12 +2,12 @@ apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
   creationTimestamp: null
-  name: dev-app-taxi-taxi-binding
+  name: dev-app-Go-Server-Go-Server-binding
   namespace: cicd
 spec:
   params:
   - name: imageRepo
-    value: quay.io/cbanavik/taxi
+    value: image-registry.openshift-image-registry.svc:5000/cicd/Go-Server
   - name: tlsVerify
-    value: "true"
+    value: "false"
 status: {}

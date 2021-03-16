@@ -8,6 +8,31 @@ spec:
   destination:
     namespace: cicd
     server: https://kubernetes.default.svc
+  ignoreDifferences:
+  - group: argoproj.io
+    jsonPointers:
+    - /status
+    kind: Application
+  - group: triggers.tekton.dev
+    jsonPointers:
+    - /status
+    kind: EventListener
+  - group: triggers.tekton.dev
+    jsonPointers:
+    - /status
+    kind: TriggerTemplate
+  - group: triggers.tekton.dev
+    jsonPointers:
+    - /status
+    kind: TriggerBinding
+  - group: route.openshift.io
+    jsonPointers:
+    - /spec/host
+    kind: Route
+  - group: bitnami.com
+    jsonPointers:
+    - /status
+    kind: SealedSecret
   project: default
   source:
     path: config/cicd/overlays
