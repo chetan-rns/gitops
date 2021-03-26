@@ -5,40 +5,20 @@ config:
     name: cicd
 environments:
 - apps:
-  - name: app-go-server
-    services:
-    - name: go-server
-      pipelines:
-        integration:
-          bindings:
-          - dev-app-go-server-go-server-binding
-          - github-push-binding
-      source_url: https://github.com/chetan-rns/go-server.git
-      webhook:
-        secret:
-          name: webhook-secret-dev-go-server
-          namespace: cicd
-  name: dev
-  pipelines:
-    integration:
-      bindings:
-      - github-push-binding
-      template: app-ci-template
-- apps:
-  - name: app
+  - name: app-taxi
     services:
     - name: taxi
       pipelines:
         integration:
           bindings:
-          - prod-app-taxi-binding
+          - dev-app-taxi-taxi-binding
           - github-push-binding
       source_url: https://github.com/chetan-rns/taxi.git
       webhook:
         secret:
-          name: webhook-secret-prod-taxi
+          name: webhook-secret-dev-taxi
           namespace: cicd
-  name: prod
+  name: dev
   pipelines:
     integration:
       bindings:

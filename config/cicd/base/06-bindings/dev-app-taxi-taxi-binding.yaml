@@ -2,7 +2,7 @@ apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
   creationTimestamp: null
-  name: prod-app-taxi-binding
+  name: dev-app-taxi-taxi-binding
   namespace: cicd
 spec:
   params:
