@@ -43,7 +43,8 @@ spec:
       kind: Task
       name: deploy-from-source-task
   finally:
-  - taskRef:
+  - name: set-commit-status
+    taskRef:
       name: set-commit-status
     params:
     - name: REPO
