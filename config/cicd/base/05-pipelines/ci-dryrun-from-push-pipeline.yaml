@@ -8,7 +8,26 @@ spec:
   resources:
   - name: source-repo
     type: git
+  params:
+  - name: REPO
+    type: string
+  - name: COMMIT_SHA
+    type: string
+  - name: GIT_REPO
+    type: string
   tasks:
+  - name: set-commit-status
+    params:
+    - name: REPO
+      value: $(params.REPO)
+    - name: COMMIT_SHA
+      value: $(params.COMMIT_SHA)
+    - name: DESCRIPTION
+      value: "Build has started"
+    - name: STATE
+      value: "pending"
+    - name: GIT_REPO
+      value: $(params.GIT_REPO)
   - name: apply-source
     params:
     - name: DRYRUN
@@ -20,3 +39,18 @@ spec:
     taskRef:
       kind: Task
       name: deploy-from-source-task
+  finally:
+  - name: set-commit-status
+    taskRef:
+      name: set-commit-status
+    params:
+    - name: REPO
+      value: $(params.REPO)
+    - name: COMMIT_SHA
+      value: $(params.COMMIT_SHA)
+    - name: DESCRIPTION
+      value: "Build has started"
+    - name: STATE
+      value: $(tasks.apply-source.status)
+    - name: GIT_REPO
+      value: $(params.GIT_REPO)
