@@ -78,7 +78,7 @@ spec:
         import os
         import http.client
         status_url = "$(params.API_PATH_PREFIX)" + "/repos/$(params.REPO)/" + \
-            "statuses/$(params.SHA)"
+            "statuses/$(params.COMMIT_SHA)"
         data = {
             "state": "$(params.STATE)",
             "target_url": "$(params.TARGET_URL)",
@@ -103,4 +103,4 @@ spec:
             print(resp.read())
         else:
           print("GitHub status '$(params.STATE)' has been set on "
-                "$(params.REPO)#$(params.SHA) ")
+                "$(params.REPO)#$(params.COMMIT_SHA) ")
