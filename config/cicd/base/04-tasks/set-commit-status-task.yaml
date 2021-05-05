@@ -32,13 +32,13 @@ spec:
     description: |
       The name of the kubernetes secret that contains the GitHub token, default: github
     type: string
-    default: github
+    default: git-host-basic-auth-token
 
   - name: GITHUB_TOKEN_SECRET_KEY
     description: |
       The key within the kubernetes secret that contains the GitHub token, default: token
     type: string
-    default: token
+    default: password
 
   - name: COMMIT_SHA
     description: |

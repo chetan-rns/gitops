@@ -13,6 +13,8 @@ spec:
     name: io.openshift.build.commit.id
   - description: The git repository url
     name: gitrepositoryurl
+  - description: The GitHub repository for this PullRequest.
+    name: fullname
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
@@ -31,6 +33,13 @@ spec:
           - name: url
             value: $(tt.params.gitrepositoryurl)
           type: git
+      params:
+      - name: REPO
+        value: $(tt.params.fullname)
+      - name: GIT_REPO
+        value: $(tt.params.gitrepositoryurl)
+      - name: COMMIT_SHA
+        value: $(tt.params.io.openshift.build.commit.id)
       serviceAccountName: pipeline
     status: {}
 status: {}
