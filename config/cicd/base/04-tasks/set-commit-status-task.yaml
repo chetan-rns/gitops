@@ -81,7 +81,6 @@ spec:
             "statuses/$(params.COMMIT_SHA)"
         data = {
             "state": "$(params.STATE)",
-            "target_url": "$(params.TARGET_URL)",
             "description": "$(params.DESCRIPTION)",
             "context": "$(params.CONTEXT)"
         }
