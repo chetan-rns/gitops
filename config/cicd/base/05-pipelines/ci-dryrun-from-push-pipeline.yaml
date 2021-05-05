@@ -17,6 +17,9 @@ spec:
     type: string
   tasks:
   - name: set-commit-status
+    taskRef:
+      kind: Task
+      name: set-commit-status
     params:
     - name: REPO
       value: $(params.REPO)
