@@ -17,6 +17,8 @@ spec:
         secretRef:
           secretKey: webhook-secret-key
           secretName: gitops-webhook-secret
+        eventTypes:
+        - push
     - cel:
         filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'chetan-rns/gitops')
         overlays:
