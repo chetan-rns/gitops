@@ -25,5 +25,5 @@ environments:
       - github-push-binding
       template: app-ci-template
 - name: stage
-gitops_url: https://github.com/chetan-rns/gitops-finally.git
+gitops_url: https://github.com/chetan-rns/gitops.git
 version: 1
