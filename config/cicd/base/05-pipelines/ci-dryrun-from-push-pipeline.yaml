@@ -29,8 +29,6 @@ spec:
       value: "Build has started"
     - name: STATE
       value: "pending"
-    - name: GIT_REPO
-      value: $(params.GIT_REPO)
   - name: apply-source
     params:
     - name: DRYRUN
@@ -55,5 +53,3 @@ spec:
       value: "Build has started"
     - name: STATE
       value: $(tasks.apply-source.status)
-    - name: GIT_REPO
-      value: $(params.GIT_REPO)
