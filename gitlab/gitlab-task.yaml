@@ -1,11 +1,25 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: set-commit-status
-  namespace: cicd
+  name: github-set-status
+  labels:
+    app.kubernetes.io/version: "0.1"
+  annotations:
+    tekton.dev/pipelines.minVersion: "0.12.1"
+    tekton.dev/tags: github
+    tekton.dev/displayName: "set github status"
 spec:
+  description: >-
+    This task will set the status of the CI job to the specified value along
+    witha link to the specified target URL where developers can follow the
+    progress of the CI job.
+    The `github-set-status` task allows external services to mark GitHub commits
+    with an `error`, `failure`, `pending`, or `success` state, which is then
+    reflected in pull requests involving those commits. Statuses include as well a
+    `description` and a `target_url`, to give the user informations about the CI
+    statuses or a direct link to the full log.
   params:
-  - name: GIT_REPO
+  - name: GITHUB_HOST_URL
     description: |
       The GitHub host, adjust this if you run a GitHub enteprise.
     default: "api.github.com"
@@ -17,7 +31,7 @@ spec:
     default: ""
     type: string
 
-  - name: REPO
+  - name: REPO_FULL_NAME
     description: |
       The GitHub repository full name, e.g.: tektoncd/catalog
     type: string
@@ -26,17 +40,24 @@ spec:
     description: |
       The name of the kubernetes secret that contains the GitHub token, default: github
     type: string
-    default: git-host-basic-auth-token
+    default: github
 
   - name: GITHUB_TOKEN_SECRET_KEY
     description: |
       The key within the kubernetes secret that contains the GitHub token, default: token
     type: string
-    default: password
+    default: token
 
-  - name: COMMIT_SHA
+  - name: SHA
     description: |
       Commit SHA to set the status for.
+    type: string
+
+  - name: TARGET_URL
+    description: |
+      The target URL to associate with this status. This URL will be linked
+      from the GitHub UI to allow users to easily see the source of the
+      status.
     type: string
 
   - name: DESCRIPTION
@@ -71,25 +92,33 @@ spec:
         import json
         import os
         import http.client
-        status_url = "$(params.API_PATH_PREFIX)" + "/repos/$(params.REPO)/" + \
-            "statuses/$(params.COMMIT_SHA)"
+        state = "$(params.STATE)"
+        print(state)
+        if state == "true":
+            state = "success"
+        elif state == "false":
+            state = "failed"
+        else:
+            state = "pending"
+        
+        status_url = "$(params.API_PATH_PREFIX)" + "/projects/$(params.REPO_FULL_NAME)/" + \
+            "statuses/$(params.SHA)"
         data = {
-            "state": "$(params.STATE)",
+            "state": state,
             "description": "$(params.DESCRIPTION)",
             "context": "$(params.CONTEXT)"
         }
         print("Sending this data to GitHub: ")
-        print("$(params.GIT_REPO)")
-        print(status_url)
-        conn = http.client.HTTPSConnection("$(params.GIT_REPO)")
+        print(data)
+        conn = http.client.HTTPSConnection("$(params.GITHUB_HOST_URL)")
         r = conn.request(
             "POST",
             status_url,
             body=json.dumps(data),
             headers={
                 "User-Agent": "TektonCD, the peaceful cat",
-                "Authorization": "Bearer " + os.environ["GITHUBTOKEN"],
-                "Accept": "application/vnd.github.v3+json ",
+                "PRIVATE-TOKEN": os.environ["GITHUBTOKEN"],
+                "Content-Type": "application/json"
             })
         resp = conn.getresponse()
         if not str(resp.status).startswith("2"):
@@ -97,4 +126,4 @@ spec:
             print(resp.read())
         else:
           print("GitHub status '$(params.STATE)' has been set on "
-                "$(params.REPO)#$(params.COMMIT_SHA) ")
+                "$(params.REPO_FULL_NAME)#$(params.SHA) ")

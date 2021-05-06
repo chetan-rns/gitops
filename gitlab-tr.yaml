@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  labels:
+    tekton.dev/task: github-set-status
+  name: github-set-status-run
+spec:
+  taskRef:
+    kind: Task
+    name: github-set-status
+  params:
+    - name: REPO_FULL_NAME
+      value: cbanavik%2Fgo-server
+    - name: SHA
+      value: bb819f27fa45e160a321fe2e4248ef332f3d728b
+    - name: DESCRIPTION
+      value: "Build has started"
+    - name: STATE
+      value: pending
+    - name: TARGET_URL
+      value: https://tekton/dashboard/taskrun/log
+    - name: API_PATH_PREFIX
+      value: "/api/v4"
+    - name: GITHUB_HOST_URL
+      value: "gitlab.com"
