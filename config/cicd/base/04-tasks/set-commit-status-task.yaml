@@ -79,7 +79,8 @@ spec:
             "context": "$(params.CONTEXT)"
         }
         print("Sending this data to GitHub: ")
-        print(data)
+        print("$(params.GIT_REPO)")
+        print(status_url)
         conn = http.client.HTTPSConnection("$(params.GIT_REPO)")
         r = conn.request(
             "POST",
