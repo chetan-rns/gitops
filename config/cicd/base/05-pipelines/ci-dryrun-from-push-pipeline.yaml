@@ -21,8 +21,6 @@ spec:
       kind: Task
       name: set-commit-status
     params:
-    - name: REPO
-      value: $(params.REPO)
     - name: COMMIT_SHA
       value: $(params.COMMIT_SHA)
     - name: DESCRIPTION
