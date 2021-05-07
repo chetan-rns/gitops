@@ -14,7 +14,7 @@ spec:
   - name: API_PATH_PREFIX
     description: |
       The API path prefix, GitHub Enterprise has a prefix e.g. /api/v3
-    default: "/api/v3"
+    default: ""
     type: string
 
   - name: REPO
