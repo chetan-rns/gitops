@@ -5,30 +5,37 @@ metadata:
   name: ci-dryrun-from-push-pipeline
   namespace: cicd
 spec:
-  resources:
-  - name: source-repo
-    type: git
-  params:
-  - name: REPO
-    type: string
-  - name: COMMIT_SHA
-    type: string
-  - name: GIT_REPO
-    type: string
-  tasks:
-  - name: set-commit-status
-    taskRef:
-      kind: Task
-      name: set-commit-status
+  finally:
+  - name: final-commit-status
     params:
     - name: REPO
       value: $(params.REPO)
     - name: COMMIT_SHA
       value: $(params.COMMIT_SHA)
     - name: DESCRIPTION
-      value: "Build has started"
+      value: The build is completed
     - name: STATE
-      value: "pending"
+      value: $(tasks.apply-source.status)
+    taskRef:
+      kind: Task
+      name: set-commit-status
+  resources:
+  - name: source-repo
+    type: git
+  tasks:
+  - name: set-commit-status
+    params:
+    - name: REPO
+      value: $(params.REPO)
+    - name: COMMIT_SHA
+      value: $(params.COMMIT_SHA)
+    - name: DESCRIPTION
+      value: The build has started
+    - name: STATE
+      value: pending
+    taskRef:
+      kind: Task
+      name: set-commit-status
   - name: apply-source
     params:
     - name: DRYRUN
@@ -40,16 +47,3 @@ spec:
     taskRef:
       kind: Task
       name: deploy-from-source-task
-  finally:
-  - name: set-commit
-    taskRef:
-      name: set-commit-status
-    params:
-    - name: REPO
-      value: $(params.REPO)
-    - name: COMMIT_SHA
-      value: $(params.COMMIT_SHA)
-    - name: DESCRIPTION
-      value: "Build has started"
-    - name: STATE
-      value: $(tasks.apply-source.status)

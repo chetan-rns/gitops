@@ -13,15 +13,22 @@ spec:
     name: io.openshift.build.commit.id
   - description: The git repository url
     name: gitrepositoryurl
-  - description: The GitHub repository for this PullRequest.
+  - description: The repository name for this PullRequest.
     name: fullname
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1
     kind: PipelineRun
     metadata:
       creationTimestamp: null
-      name: ci-dryrun-$(uid)
+      name: ci-dryrun-from-push-pipeline-$(uid)
     spec:
+      params:
+      - name: REPO
+        value: $(tt.params.fullname)
+      - name: GIT_REPO
+        value: $(tt.params.gitrepositoryurl)
+      - name: COMMIT_SHA
+        value: $(tt.params.io.openshift.build.commit.id)
       pipelineRef:
         name: ci-dryrun-from-push-pipeline
       resources:
@@ -33,13 +40,6 @@ spec:
           - name: url
             value: $(tt.params.gitrepositoryurl)
           type: git
-      params:
-      - name: REPO
-        value: $(tt.params.fullname)
-      - name: GIT_REPO
-        value: $(tt.params.gitrepositoryurl)
-      - name: COMMIT_SHA
-        value: $(tt.params.io.openshift.build.commit.id)
       serviceAccountName: pipeline
     status: {}
 status: {}

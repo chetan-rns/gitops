@@ -18,7 +18,7 @@ spec:
     name: io.openshift.build.commit.message
   - description: The git repository URL.
     name: gitrepositoryurl
-  - description: The GitHub repository for this PullRequest.
+  - description: The repository name for this PullRequest.
     name: fullname
   - description: The repository to push built images to.
     name: imageRepo

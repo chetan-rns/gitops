@@ -5,6 +5,20 @@ metadata:
   name: app-ci-pipeline
   namespace: cicd
 spec:
+  finally:
+  - name: final-commit-status
+    params:
+    - name: REPO
+      value: $(params.REPO)
+    - name: COMMIT_SHA
+      value: $(params.COMMIT_SHA)
+    - name: DESCRIPTION
+      value: The build is completed
+    - name: STATE
+      value: $(tasks.apply-source.status)
+    taskRef:
+      kind: Task
+      name: set-commit-status
   params:
   - name: REPO
     type: string
@@ -27,6 +41,19 @@ spec:
   - name: GIT_REPO
     type: string
   tasks:
+  - name: set-commit-status
+    params:
+    - name: REPO
+      value: $(params.REPO)
+    - name: COMMIT_SHA
+      value: $(params.COMMIT_SHA)
+    - name: DESCRIPTION
+      value: The build has started
+    - name: STATE
+      value: pending
+    taskRef:
+      kind: Task
+      name: set-commit-status
   - name: clone-source
     params:
     - name: url
