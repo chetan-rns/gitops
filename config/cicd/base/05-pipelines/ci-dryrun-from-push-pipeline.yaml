@@ -15,7 +15,7 @@ spec:
     - name: DESCRIPTION
       value: The build is completed
     - name: STATE
-      value: $(tasks.apply-source.status)
+      value: $(tasks.status)
     taskRef:
       kind: Task
       name: set-commit-status
