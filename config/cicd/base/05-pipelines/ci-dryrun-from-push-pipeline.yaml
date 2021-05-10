@@ -19,6 +19,11 @@ spec:
     taskRef:
       kind: Task
       name: set-commit-status
+  params:
+  - name: REPO
+    type: string
+  - name: COMMIT_SHA
+    type: string
   resources:
   - name: source-repo
     type: git
