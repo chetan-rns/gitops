@@ -60,11 +60,11 @@ spec:
       value: $(params.GIT_REPO)
     - name: revision
       value: $(params.GIT_REF)
+    runAfter:
+    - set-commit-status
     taskRef:
       kind: ClusterTask
       name: git-clone
-    runAfter:
-    - set-commit-status
     workspaces:
     - name: output
       workspace: shared-data

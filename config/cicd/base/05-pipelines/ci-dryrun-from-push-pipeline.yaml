@@ -49,8 +49,8 @@ spec:
       inputs:
       - name: source
         resource: source-repo
+    runAfter:
+    - set-commit-status
     taskRef:
       kind: Task
       name: deploy-from-source-task
-    runAfter:
-    - set-commit-status
