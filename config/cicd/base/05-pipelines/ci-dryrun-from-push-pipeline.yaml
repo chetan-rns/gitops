@@ -52,3 +52,5 @@ spec:
     taskRef:
       kind: Task
       name: deploy-from-source-task
+    runAfter:
+    - set-commit-status

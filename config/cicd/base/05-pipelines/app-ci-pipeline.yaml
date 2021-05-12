@@ -63,6 +63,8 @@ spec:
     taskRef:
       kind: ClusterTask
       name: git-clone
+    runAfter:
+    - set-commit-status
     workspaces:
     - name: output
       workspace: shared-data
