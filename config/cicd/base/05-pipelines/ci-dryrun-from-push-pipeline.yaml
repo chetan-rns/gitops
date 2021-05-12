@@ -10,6 +10,8 @@ spec:
     params:
     - name: REPO
       value: $(params.REPO)
+    - name: GIT_REPO
+      value: $(params.GIT_REPO)
     - name: COMMIT_SHA
       value: $(params.COMMIT_SHA)
     - name: DESCRIPTION
@@ -24,12 +26,16 @@ spec:
     type: string
   - name: COMMIT_SHA
     type: string
+  - name: GIT_REPO
+    type: string
   resources:
   - name: source-repo
     type: git
   tasks:
   - name: set-commit-status
     params:
+    - name: GIT_REPO
+      value: $(params.GIT_REPO)
     - name: REPO
       value: $(params.REPO)
     - name: COMMIT_SHA

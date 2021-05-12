@@ -6,19 +6,15 @@ metadata:
   namespace: cicd
 spec:
   params:
-  - default: api.github.com
-    name: GIT_REPO
-    type: string
-  - default: ""
-    name: API_PATH_PREFIX
+  - name: GIT_REPO
     type: string
   - name: REPO
     type: string
   - default: git-host-access-token
-    name: GITHUB_TOKEN_SECRET_NAME
+    name: GIT_TOKEN_SECRET_NAME
     type: string
   - default: token
-    name: GITHUB_TOKEN_SECRET_KEY
+    name: GIT_TOKEN_SECRET_KEY
     type: string
   - name: COMMIT_SHA
     type: string
@@ -31,12 +27,12 @@ spec:
     type: string
   steps:
   - env:
-    - name: GITHUBTOKEN
+    - name: GITHOSTACCESSTOKEN
       valueFrom:
         secretKeyRef:
-          key: $(params.GITHUB_TOKEN_SECRET_KEY)
-          name: $(params.GITHUB_TOKEN_SECRET_NAME)
-    image: registry.access.redhat.com/ubi8/python-38:1-34.1599745032
+          key: $(params.GIT_TOKEN_SECRET_KEY)
+          name: $(params.GIT_TOKEN_SECRET_NAME)
+    image: quay.io/cbanavik/set-commit-status:v0.1
     name: set-commit-status
-    resources: {}
-    script: "#!/usr/libexec/platform-python\nimport json\nimport os\nimport http.client\nstatus_url = \"$(params.API_PATH_PREFIX)\" + \"/repos/$(params.REPO)/\" + \\\n\t\"statuses/$(params.COMMIT_SHA)\"\nstate = \"$(params.STATE)\"\nif state == 'Failed':\n\tstate = 'failure'\nelif state == 'Succeeded':\n\tstate = 'success'\nelse:\n\tstate = 'pending'\ndata = {\n\t\"state\": state,\n\t\"description\": \"$(params.DESCRIPTION)\",\n\t\"context\": \"$(params.CONTEXT)\"\n}\nconn = http.client.HTTPSConnection(\"$(params.GIT_REPO)\")\nr = conn.request(\n\t\"POST\",\n\tstatus_url,\n\tbody=json.dumps(data),\n\theaders={\n\t\t\"User-Agent\": \"TektonCD, the peaceful cat\",\n\t\t\"Authorization\": \"Bearer \" + os.environ[\"GITHUBTOKEN\"],\n\t\t\"Accept\": \"application/vnd.github.v3+json \",\n\t})\nresp = conn.getresponse()\nif not str(resp.status).startswith(\"2\"):\n\tprint(\"Error: %d\" % (resp.status))\n\tprint(resp.read())\nelse:\n  \tprint(\"GitHub status '$(params.STATE)' has been set on \" \"$(params.REPO)#$(params.COMMIT_SHA) \")"
+    script:
+      set-commit-status --url $(params.GIT_REPO) --path $(params.REPO) --sha $(params.COMMIT_SHA) --context $(params.CONTEXT) --status $(params.STATE)
