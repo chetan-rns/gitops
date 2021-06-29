@@ -6,16 +6,16 @@ metadata:
   namespace: cicd
 spec:
   finally:
-  - name: final-commit-status
+  - name: set-final-status
     params:
-    - name: GIT_REPO
-      value: $(params.GIT_REPO)
     - name: REPO
       value: $(params.REPO)
+    - name: GIT_REPO
+      value: $(params.GIT_REPO)
     - name: COMMIT_SHA
       value: $(params.COMMIT_SHA)
     - name: DESCRIPTION
-      value: The build is completed
+      value: The build is complete
     - name: STATE
       value: $(tasks.build-image.status)
     taskRef:
@@ -43,7 +43,7 @@ spec:
   - name: GIT_REPO
     type: string
   tasks:
-  - name: set-commit-status
+  - name: set-pending-status
     params:
     - name: REPO
       value: $(params.REPO)
@@ -65,7 +65,7 @@ spec:
     - name: revision
       value: $(params.GIT_REF)
     runAfter:
-    - set-commit-status
+    - set-pending-status
     taskRef:
       kind: ClusterTask
       name: git-clone
@@ -77,7 +77,9 @@ spec:
     - name: TLSVERIFY
       value: $(params.TLSVERIFY)
     - name: BUILD_EXTRA_ARGS
-      value: --label=io.openshift.build.commit.author='$(params.COMMIT_AUTHOR)' --label=io.openshift.build.commit.date='$(params.COMMIT_DATE)' --label=io.openshift.build.commit.id='$(params.COMMIT_SHA)' --label=io.openshift.build.commit.message='$(params.COMMIT_MESSAGE)' --label=io.openshift.build.commit.ref='$(params.GIT_REF)'
+      value: --label=io.openshift.build.commit.author='$(params.COMMIT_AUTHOR)' --label=io.openshift.build.commit.date='$(params.COMMIT_DATE)'
+        --label=io.openshift.build.commit.id='$(params.COMMIT_SHA)' --label=io.openshift.build.commit.message='$(params.COMMIT_MESSAGE)'
+        --label=io.openshift.build.commit.ref='$(params.GIT_REF)'
     - name: IMAGE
       value: $(params.IMAGE)
     runAfter:

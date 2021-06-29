@@ -13,7 +13,7 @@ spec:
     name: io.openshift.build.commit.id
   - description: The git repository url
     name: gitrepositoryurl
-  - description: The repository name for this PullRequest.
+  - description: The repository name for this PullRequest
     name: fullname
   resourcetemplates:
   - apiVersion: tekton.dev/v1beta1

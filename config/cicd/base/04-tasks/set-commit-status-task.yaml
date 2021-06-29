@@ -34,5 +34,6 @@ spec:
           name: $(params.GIT_TOKEN_SECRET_NAME)
     image: quay.io/cbanavik/set-commit-status:v0.1
     name: set-commit-status
-    script:
-      set-commit-status --url $(params.GIT_REPO) --path $(params.REPO) --sha $(params.COMMIT_SHA) --context $(params.CONTEXT) --status $(params.STATE)
+    resources: {}
+    script: set-commit-status --url $(params.GIT_REPO) --path $(params.REPO) --sha
+      $(params.COMMIT_SHA) --context $(params.CONTEXT) --status $(params.STATE)
