@@ -1,3 +1,2 @@
 resources:
-- argocd-admin.yaml
 - stage-environment.yaml
