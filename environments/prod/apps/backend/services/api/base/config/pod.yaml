@@ -19,7 +19,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: nginx
+      - image: nginxinc/nginx-unprivileged:latest
         name: nginx
         resources: {}
 status: {}
