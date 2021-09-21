@@ -1,5 +1,6 @@
 resources:
 - 01-namespaces/cicd-environment.yaml
+- 02-rolebindings/argocd-admin.yaml
 - 02-rolebindings/internal-registry-cicd-binding.yaml
 - 02-rolebindings/pipeline-service-account.yaml
 - 02-rolebindings/pipeline-service-role.yaml
@@ -10,7 +11,6 @@ resources:
 - 04-pipelines/ci-dryrun-from-push-pipeline.yaml
 - 05-bindings/dev-app-taxi-taxi-binding.yaml
 - 05-bindings/github-push-binding.yaml
-- 05-bindings/prod-backend-api-binding.yaml
 - 06-templates/app-ci-build-from-push-template.yaml
 - 06-templates/ci-dryrun-from-push-template.yaml
 - 07-eventlisteners/cicd-event-listener.yaml
