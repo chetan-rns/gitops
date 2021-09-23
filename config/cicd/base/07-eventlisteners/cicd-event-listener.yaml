@@ -6,29 +6,23 @@ metadata:
   namespace: cicd
 spec:
   namespaceSelector: {}
+  podTemplate: {}
   resources: {}
   serviceAccountName: pipeline
   triggers:
   - bindings:
     - ref: github-push-binding
     interceptors:
-    - params:
-      - name: secretRef
-        value:
+    - github:
+        secretRef:
           secretKey: webhook-secret-key
           secretName: gitops-webhook-secret
-      ref:
-        name: github
-    - params:
-      - name: filter
-        value: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/gitops')
-      - name: overlays
-        value:
+        overlays:
         - expression: body.ref.split('/')[2]
           key: ref
-      ref:
-        name: cel
     name: ci-dryrun-from-push
     template:
       ref: ci-dryrun-from-push-template
@@ -36,23 +30,16 @@ spec:
     - ref: dev-app-taxi-taxi-binding
     - ref: github-push-binding
     interceptors:
-    - params:
-      - name: secretRef
-        value:
+    - github:
+        secretRef:
           secretKey: webhook-secret-key
           secretName: webhook-secret-dev-taxi
-      ref:
-        name: github
-    - params:
-      - name: filter
-        value: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
           == 'chetan-rns/taxi')
-      - name: overlays
-        value:
+        overlays:
         - expression: body.ref.split('/')[2]
           key: ref
-      ref:
-        name: cel
     name: app-ci-build-from-push-taxi
     template:
       ref: app-ci-template
