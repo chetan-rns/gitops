@@ -24,6 +24,25 @@ environments:
       bindings:
       - github-push-binding
       template: app-ci-template
-- name: stage
+- apps:
+  - name: app-taxi
+    services:
+    - name: taxi
+  name: prod
+  pipelines:
+    integration:
+      bindings:
+      - github-push-binding
+      template: app-ci-template
+- apps:
+  - name: app-taxi
+    services:
+    - name: taxi
+  name: stage
+  pipelines:
+    integration:
+      bindings:
+      - github-push-binding
+      template: app-ci-template
 gitops_url: https://github.com/chetan-rns/gitops.git
 version: 1

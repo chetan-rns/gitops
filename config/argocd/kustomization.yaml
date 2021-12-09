@@ -3,4 +3,7 @@ resources:
 - cicd-app.yaml
 - dev-app-taxi-app.yaml
 - dev-env-app.yaml
+- prod-app-taxi-app.yaml
+- prod-env-app.yaml
+- stage-app-taxi-app.yaml
 - stage-env-app.yaml
