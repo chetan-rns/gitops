@@ -45,4 +45,4 @@ environments:
       - github-push-binding
       template: app-ci-template
 gitops_url: https://github.com/chetan-rns/gitops.git
-version: 1
+version: 1 
